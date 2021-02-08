@@ -1,7 +1,7 @@
 {
-  "name": "scratch_boiler",
+  "name": "baby-namr",
   "version": "0.1.0",
-  "description": "React Boiler Plate w/ Webpack",
+  "description": "A Baby Naming Application",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.prod.js",
@@ -18,15 +18,7 @@
   },
   "author": "Tuna Fortuna",
   "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tuna42na/scratch-boilerplate.git"
-  },
   "keywords": [],
-  "bugs": {
-    "url": "https://github.com/tuna42na/scratch-boilerplate/issues"
-  },
-  "homepage": "https://github.com/tuna42na/scratch-boilerplate#readme",
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
@@ -57,5 +49,13 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuna42na/baby-namr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tuna42na/baby-namr/issues"
+  },
+  "homepage": "https://github.com/tuna42na/baby-namr#readme"
 }
