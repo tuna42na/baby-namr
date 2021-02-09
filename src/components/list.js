@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ListItem from "./listItem";
+import PreferenceList from "./preferenceList";
 
 const List = () => {
   const [list, setList] = useState([]);
+  const [preferences, setPreferences] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -10,24 +13,40 @@ const List = () => {
       setList(results.data);
     };
     fetchData();
-  }, []);
-  console.log(list);
+  }, [preferences]);
+
+  // Add Preferences
+  const onAdd = (item) => {
+    if (!preferences.some((e) => e.name === item.name)) {
+      let updatedPreferences = [...preferences];
+      updatedPreferences.push(item);
+      setPreferences(updatedPreferences);
+    }
+  };
+
+  // Take Away Preferences
+  const onDelete = (item) => {
+    let updatedPreferences = [...preferences];
+    let index = updatedPreferences.findIndex((x) => x.name === item.name);
+    updatedPreferences.splice(index, 1);
+    setPreferences(updatedPreferences);
+  };
 
   return (
     <div className="baby-name-container">
-      <h1>Baby Names</h1>
       {list.length == 0 ? (
-        <p>Loading...</p>
+        <p> Loading... </p>
       ) : (
-        <ul>
-          {list.names.map((item, i) => {
-            return (
-              <li key={i}>
-                - {item.name} : {item.year}
-              </li>
-            );
-          })}
-        </ul>
+        <div>
+          <div>
+            <h1>Baby Names</h1>
+            <ListItem list={list} onAdd={onAdd} />
+          </div>
+          <div>
+            <h1>Your Picks</h1>
+            <PreferenceList preferences={preferences} onDelete={onDelete} />
+          </div>
+        </div>
       )}
     </div>
   );

@@ -1,7 +1,13 @@
 {
   "names": [
-    { "name": "Helen", "year": 1998, "id": 14 },
-    { "name": "Mark", "year": 1930, "id": 16 },
-    { "name": "James", "year": 1950, "id": 17 }
+    {
+      "name": "Helen",
+      "year": 1998,
+      "id": 14,
+      "sex": "female",
+      "popularity": 20
+    },
+    { "name": "Mark", "year": 1930, "id": 16, "sex": "male", "popularity": 45 },
+    { "name": "James", "year": 1950, "id": 17, "sex": "male", "popularity": 60 }
   ]
 }
