@@ -13,14 +13,14 @@ const PreferenceList = (props) => {
         {choices.map((item) => {
           return (
             <li key={item.id}>
-              ~ {item.name} ~{" "}
               <button
                 onClick={() => {
                   props.onDelete(item);
                 }}
               >
                 -
-              </button>
+              </button>{" "}
+              ~ {item.name} ~
             </li>
           );
         })}
