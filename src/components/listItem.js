@@ -5,27 +5,29 @@ const ListItem = (props) => {
 
   return (
     <div>
-      <table id="nameList">
-        {list.map((item, i) => {
-          return (
-            <tr key={i}>
-              <td>
-                <button
-                  onClick={() => {
-                    props.onAdd(item);
-                  }}
-                >
-                  +
-                </button>
-              </td>{" "}
-              <td>
-                <h2>{item.name}</h2>
-              </td>
-              <td>Year:{item.year}</td>
-              <td>Popular:{item.popularity}</td>
-            </tr>
-          );
-        })}
+      <table id="name-list">
+        <tbody>
+          {list.map((item, i) => {
+            return (
+              <tr key={i}>
+                <td>
+                  <button
+                    onClick={() => {
+                      props.onAdd(item);
+                    }}
+                  >
+                    +
+                  </button>
+                </td>
+                <td>
+                  <strong>{item.name}</strong>
+                </td>
+                <td> Year: {item.year}</td>
+                <td> Popularity: {item.popularity}/100 </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
     </div>
   );

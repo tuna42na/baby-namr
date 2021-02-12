@@ -7,11 +7,12 @@ const OrderNames = (props) => {
 
   return (
     <>
-      <label>Filter Names by : </label>
+      <label>Sort Names by : </label>
       <select
         name="filter"
         id="filter"
         onChange={(e) => handleChange(e.target.value)}
+        defaultValue="name"
       >
         <option value="name">name</option>
         <option value="year">year</option>

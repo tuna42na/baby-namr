@@ -8,7 +8,7 @@ const PreferenceList = (props) => {
   }, [props.preferences]);
 
   return (
-    <>
+    <div className="preference-container">
       <ul>
         {choices.map((item) => {
           return (
@@ -20,12 +20,12 @@ const PreferenceList = (props) => {
               >
                 -
               </button>{" "}
-              ~ {item.name} ~
+              <strong>{item.name}</strong>
             </li>
           );
         })}
       </ul>
-    </>
+    </div>
   );
 };
 

@@ -8,6 +8,40 @@
       "popularity": 20
     },
     { "name": "Mark", "year": 1930, "id": 16, "sex": "male", "popularity": 45 },
-    { "name": "James", "year": 1950, "id": 17, "sex": "male", "popularity": 60 }
+    {
+      "name": "James",
+      "year": 1950,
+      "id": 17,
+      "sex": "male",
+      "popularity": 60
+    },
+    {
+      "name": "Tegan",
+      "year": 1970,
+      "id": 23,
+      "sex": "female",
+      "popularity": 55
+    },
+    {
+      "name": "Nathaniel",
+      "year": 1988,
+      "id": 47,
+      "sex": "male",
+      "popularity": 10
+    },
+    {
+      "name": "Tarvis",
+      "year": 1935,
+      "id": 65,
+      "sex": "male",
+      "popularity": 45
+    },
+    {
+      "name": "Big Gray Bear",
+      "year": 2021,
+      "id": 69,
+      "sex": "male",
+      "popularity": 100
+    }
   ]
 }
