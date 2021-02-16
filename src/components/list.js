@@ -66,7 +66,7 @@ const List = () => {
       {list.length == 0 ? (
         <p> Loading... </p>
       ) : (
-        <div>
+        <div className="baby-name-container">
           <h1>Baby Names</h1>
           <OrderNames onChangeOrder={onChangeOrder} />
           <ListItem list={list} onAdd={onAdd} />
