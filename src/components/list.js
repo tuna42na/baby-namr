@@ -4,17 +4,17 @@ import ListItem from "./listItem";
 import PreferenceList from "./preferenceList";
 import OrderNames from "./orderNames";
 import NamesPerPage from "./namesPerPage";
-import FilterResults from "./filterResults";
 
 const List = () => {
   const [list, setList] = useState([]);
+  const [listView, setListView] = useState([]);
   const [preferences, setPreferences] = useState([]);
 
   // Data Call
   useEffect(() => {
     const fetchData = async () => {
-      const results = await axios("src/data/names.json");
-      setList(results.data.names);
+      const results = await axios("https://baby-namer-api.herokuapp.com/names");
+      setList(results.data);
     };
     fetchData();
   }, [preferences]);
@@ -22,7 +22,7 @@ const List = () => {
   // Ordering Names Switch Function
   const onChangeOrder = (value) => {
     if (value == "name") {
-      const results = [...list].sort((a, b) => {
+      const results = [...listView].sort((a, b) => {
         let varA = a.name.toUpperCase();
         let varB = b.name.toUpperCase();
         if (varA < varB) {
@@ -34,15 +34,18 @@ const List = () => {
       });
       setList(results);
     } else {
-      const results = [...list].sort((a, b) => {
+      const results = [...listView].sort((a, b) => {
         return b[value] - a[value];
       });
       setList(results);
     }
   };
 
-  // Filter By Preference
-  const onFilter = (filterValue) => {};
+  // Change List View
+  const onChangeListView = (number) => {
+    let results = [...list];
+    setListView(results.splice(0, number));
+  };
 
   // Add Preferences
   const onAdd = (item) => {
@@ -69,9 +72,8 @@ const List = () => {
         <div className="baby-name-container">
           <h1>Baby Names</h1>
           <OrderNames onChangeOrder={onChangeOrder} />
-          <ListItem list={list} onAdd={onAdd} />
-          {/* <FilterResults onFilter={onFilter} /> */}
-          <NamesPerPage />
+          <NamesPerPage onChangeListView={onChangeListView} />
+          <ListItem listView={listView} onAdd={onAdd} />
         </div>
       )}
       <div>

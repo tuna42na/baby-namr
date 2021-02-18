@@ -1,13 +1,13 @@
 import React from "react";
 
 const ListItem = (props) => {
-  const list = props.list;
+  console.log(props.listView);
 
   return (
     <div>
       <table id="name-list">
         <tbody>
-          {list.map((item, i) => {
+          {props.listView.map((item, i) => {
             return (
               <tr key={i}>
                 <td>

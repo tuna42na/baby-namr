@@ -1,19 +1,23 @@
 import React from "react";
 
-const NamesPerPage = () => {
+const NamesPerPage = (props) => {
+  const handleChange = (value) => {
+    props.onChangeListView(value);
+  };
+
   return (
     <>
-      <div>
-        <span>Names Per Page: </span>
-        <input type="radio" id="25" name="drone" value="25" defaultChecked />
-        <label htmlFor="25">25</label>
-
-        <input type="radio" id="50" name="drone" value="50" />
-        <label htmlFor="50">50</label>
-
-        <input type="radio" id="100" name="drone" value="100" />
-        <label htmlFor="100">100</label>
-      </div>
+      <label>Names per page: </label>
+      <select
+        name="filter"
+        id="filter"
+        onChange={(e) => handleChange(e.target.value)}
+        defaultValue={25}
+      >
+        <option value={25}>25</option>
+        <option value={50}>50</option>
+        <option value={100}>100</option>
+      </select>
     </>
   );
 };
