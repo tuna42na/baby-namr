@@ -3,8 +3,8 @@ import React from "react";
 const Form = () => {
   return (
     <div className="formPage">
-      <div class="modal-container">
-        <form class="modal">
+      <div className="modal-container">
+        <form className="modal">
           <h2>Name Search</h2>
           <label for="gender">Baby's Gender: </label>
           <select id="gender" name="gender">

@@ -13,7 +13,9 @@ const List = () => {
   // Data Call
   useEffect(() => {
     const fetchData = async () => {
-      const results = await axios("https://baby-namer-api.herokuapp.com/names");
+      const results = await axios(
+        "https://baby-namer-api.herokuapp.com/names?year=2008&sex=M"
+      );
       setList(results.data);
     };
     fetchData();
