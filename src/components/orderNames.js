@@ -1,24 +1,25 @@
 import React from "react";
+import { NameListConsumer } from "./NameListContext";
 
 const OrderNames = (props) => {
-  const handleChange = (value) => {
-    props.onChangeOrder(value);
-  };
-
   return (
-    <>
-      <label>Sort Names by : </label>
-      <select
-        name="filter"
-        id="filter"
-        onChange={(e) => handleChange(e.target.value)}
-        defaultValue="name"
-      >
-        <option value="name">name</option>
-        <option value="year">year</option>
-        <option value="popularity">popularity</option>
-      </select>
-    </>
+    <NameListConsumer>
+      {({ onChangeOrder }) => (
+        <>
+          <label>Sort Names by : </label>
+          <select
+            name="filter"
+            id="filter"
+            onChange={(e) => onChangeOrder(e.target.value)}
+            defaultValue="name"
+          >
+            <option value="name">name</option>
+            <option value="year">year</option>
+            <option value="popularity">popularity</option>
+          </select>
+        </>
+      )}
+    </NameListConsumer>
   );
 };
 

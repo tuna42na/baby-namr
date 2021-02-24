@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
+import { NameListContext } from "./NameListContext";
 
-const PreferenceList = (props) => {
-  const [choices, setChoices] = useState([...props.preferences]);
-
-  useEffect(() => {
-    setChoices(props.preferences);
-  }, [props.preferences]);
+const PreferenceList = () => {
+  const { preferences, onDelete } = useContext(NameListContext);
 
   return (
-    <div className="preference-container">
-      <ul>
-        {choices.map((item) => {
-          return (
-            <li key={item.id}>
-              <button
-                onClick={() => {
-                  props.onDelete(item);
-                }}
-              >
-                -
-              </button>{" "}
-              <strong>{item.name}</strong>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      <div className="preference-container">
+        <ul>
+          {preferences.map((item) => {
+            return (
+              <li key={item.id}>
+                <button onClick={onDelete(item)}>-</button>{" "}
+                <strong>{item.name}</strong>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </>
   );
 };
 
