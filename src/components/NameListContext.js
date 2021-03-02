@@ -5,29 +5,55 @@ let NameListContext;
 const { Provider, Consumer } = (NameListContext = React.createContext());
 
 class NameListProvider extends React.Component {
-  state = {
-    list: [
-      {
-        name: "Helen",
-        year: 1998,
-        id: 14,
-        sex: "female",
-        popularity: 20,
-      },
-      { name: "Mark", year: 1930, id: 16, sex: "male", popularity: 45 },
-    ],
-    listView: [],
-    preferences: [],
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: [
+        {
+          name: "",
+          year: 1880,
+          id: 14,
+          sex: "female",
+          popularity: 20,
+        },
+      ],
+      listView: [
+        {
+          name: "Helen",
+          year: 1998,
+          id: 14,
+          sex: "female",
+          popularity: 20,
+        },
+      ],
+      preferences: [],
+      sortBy: "year",
+      namesPerPage: 50,
+
+      onChangeOrder: this.onChangeOrder,
+      onChangeNumber: this.onChangeNumber,
+      onAdd: this.onAdd,
+      onDelete: this.onDelete,
+      callList: this.callList,
+    };
+  }
+
+  componentDidUpdate() {}
+
+  // Call the List from the Server => Sets List Component
+  callList = (listURL) => {
+    const callNames = async () => {
+      const names = await axios(listURL);
+      this.setState({ list: names.data, listView: names.data });
+      this.onChangeNumber(this.state.namesPerPage);
+    };
+    callNames();
   };
 
-  callList = (listURL) => {
-    console.log(listURL);
-    // this.setState({ listView: newList });
-  };
   // Ordering Names Switch Function
-  onChangeOrder = (value) => {
+  onChangeOrder = async (value) => {
     if (value == "name") {
-      const results = [...this.state.listView].sort((a, b) => {
+      const results = [...this.state.list].sort((a, b) => {
         let varA = a.name.toUpperCase();
         let varB = b.name.toUpperCase();
         if (varA < varB) {
@@ -37,17 +63,22 @@ class NameListProvider extends React.Component {
         }
         return 0;
       });
-      this.setState({ list: results });
+
+      await this.setState({ list: results, listView: results });
     } else {
-      const results = [...this.state.listView].sort((a, b) => {
+      const results = [...this.state.list].sort((a, b) => {
         return b[value] - a[value];
       });
-      this.setState({ listView: results });
+
+      await this.setState({ list: results, listView: results });
     }
+    this.setState({ sortBy: value });
+    this.onChangeNumber(this.state.namesPerPage);
   };
 
   // Change List View Number
-  onChangeListView = (number) => {
+  onChangeNumber = (number) => {
+    this.setState({ namesPerPage: number });
     let results = [...this.state.list];
     this.setState({ listView: results.splice(0, number) });
   };
@@ -55,11 +86,10 @@ class NameListProvider extends React.Component {
   // Add Preferences
   onAdd = (item) => {
     if (!this.state.preferences.some((e) => e.name === item.name)) {
-      let updatedPreferences = [...this.state.preferences];
-      updatedPreferences.push(item);
-      this.setState({ preferences: [...updatedPreferences] });
+      const updatedPreferences = [...this.state.preferences, item];
+      this.setState({ preferences: updatedPreferences });
+      console.log(updatedPreferences);
     }
-    console.log(this.state.preferences);
   };
 
   // Take Away Preferences
@@ -71,22 +101,7 @@ class NameListProvider extends React.Component {
   };
 
   render() {
-    return (
-      <Provider
-        value={{
-          list: this.state.list,
-          listView: this.state.listView,
-          preferences: this.state.preferences,
-          onChangeOrder: this.onChangeOrder,
-          onChangeListView: this.onChangeListView,
-          onAdd: this.onAdd,
-          onDelete: this.onDelete,
-          callList: this.callList,
-        }}
-      >
-        {this.props.children}
-      </Provider>
-    );
+    return <Provider value={this.state}>{this.props.children}</Provider>;
   }
 }
 
