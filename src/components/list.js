@@ -18,10 +18,8 @@ const List = () => {
             <OrderNames />
             <ListItem />
           </div>
-          <div>
-            <h1>Your Picks</h1>
-            <PreferenceList preferences={preferences} />
-          </div>
+
+          <PreferenceList />
         </>
       )}
     </div>

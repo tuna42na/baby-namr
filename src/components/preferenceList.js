@@ -2,13 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { NameListContext } from "./NameListContext";
 
 const PreferenceList = (props) => {
-  const { onDelete } = useContext(NameListContext);
+  const { preferences, onDelete } = useContext(NameListContext);
 
   return (
-    <>
-      <div className="preference-container">
+    <div className="preference-container">
+      <h1> Your Picks </h1>
+      <div className="preference-box">
         <ul>
-          {props.preferences.map((item) => {
+          {preferences.map((item) => {
             return (
               <li key={item.id}>
                 <button onClick={() => onDelete(item)}>-</button>{" "}
@@ -18,7 +19,7 @@ const PreferenceList = (props) => {
           })}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 
