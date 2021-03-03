@@ -5,7 +5,7 @@ import OrderNames from "./orderNames";
 import { NameListContext } from "./NameListContext";
 
 const List = () => {
-  const { list, preferences } = useContext(NameListContext);
+  const { list } = useContext(NameListContext);
 
   return (
     <div className="list-page-container">
@@ -18,7 +18,6 @@ const List = () => {
             <OrderNames />
             <ListItem />
           </div>
-
           <PreferenceList />
         </>
       )}

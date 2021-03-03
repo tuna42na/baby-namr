@@ -43,9 +43,13 @@ class NameListProvider extends React.Component {
   // Call the List from the Server => Sets List Component
   callList = (listURL) => {
     const callNames = async () => {
-      const names = await axios(listURL);
-      this.setState({ list: names.data, listView: names.data });
-      this.onChangeNumber(this.state.namesPerPage);
+      try {
+        const names = await axios(listURL);
+        this.setState({ list: names.data, listView: names.data });
+        this.onChangeNumber(this.state.namesPerPage);
+      } catch (err) {
+        console.log(err);
+      }
     };
     callNames();
   };
@@ -63,15 +67,22 @@ class NameListProvider extends React.Component {
         }
         return 0;
       });
-
-      await this.setState({ list: results, listView: results });
+      try {
+        await this.setState({ list: results, listView: results });
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       const results = [...this.state.list].sort((a, b) => {
         return b[value] - a[value];
       });
-
-      await this.setState({ list: results, listView: results });
+      try {
+        await this.setState({ list: results, listView: results });
+      } catch (err) {
+        console.log(err);
+      }
     }
+
     this.setState({ sortBy: value });
     this.onChangeNumber(this.state.namesPerPage);
   };
