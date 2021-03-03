@@ -38,15 +38,13 @@ class NameListProvider extends React.Component {
     };
   }
 
-  componentDidUpdate() {}
-
-  // Call the List from the Server => Sets List Component
+  // Call the List from the Server && Setting List Component
   callList = (listURL) => {
     const callNames = async () => {
       try {
         const names = await axios(listURL);
         this.setState({ list: names.data, listView: names.data });
-        this.onChangeNumber(this.state.namesPerPage);
+        this.onChangeOrder(this.state.sortBy);
       } catch (err) {
         console.log(err);
       }
