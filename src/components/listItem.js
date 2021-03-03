@@ -1,29 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import { NameListContext } from "./NameListContext";
 
-const ListItem = (props) => {
-  console.log(props.listView);
+const ListItem = () => {
+  const { listView, onAdd } = useContext(NameListContext);
 
   return (
     <div>
       <table id="name-list">
         <tbody>
-          {props.listView.map((item, i) => {
+          {listView.map((item, i) => {
             return (
               <tr key={i}>
                 <td>
-                  <button
-                    onClick={() => {
-                      props.onAdd(item);
-                    }}
-                  >
-                    +
-                  </button>
+                  <button onClick={() => onAdd(item)}>+</button>
                 </td>
                 <td>
                   <strong>{item.name}</strong>
                 </td>
                 <td> Year: {item.year}</td>
-                <td> Popularity: {item.popularity}/100 </td>
+                <td>
+                  {" "}
+                  Popularity: {Math.round((item.popularity / 1000) * 100)}%
+                </td>
               </tr>
             );
           })}

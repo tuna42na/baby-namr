@@ -37,33 +37,46 @@ h1 {
   text-align: center;
   padding: 5px;
 }
-
+li {
+  height: 5vh;
+}
 /* List Page CSS */
 .list-page-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .baby-name-container {
   min-width: 60%;
+  text-align: center;
 }
 
 /* Preferences */
-.preference-container {
+.preference-box {
   margin: 15px;
   border: 2px grey solid;
   border-radius: 5px;
   min-height: 20vh;
   padding: 15px;
+  box-shadow: -5px 5px 5px 5px #0000003d;
+}
+
+.preference-container {
+  position: sticky;
+  width: 30vw;
+  top: 20%;
+  align-self: baseline;
 }
 
 #name-list {
+  width: 90%;
   margin: 15px;
   border: 2px grey solid;
   border-radius: 5px;
+  box-shadow: -5px 5px 5px 5px #0000003d;
 }
 
 /* Form Page and Elements */
@@ -88,4 +101,8 @@ h1 {
   flex-direction: column;
   align-content: center;
   padding: 5vw;
+}
+
+.input-range {
+  margin: 20px;
 }
