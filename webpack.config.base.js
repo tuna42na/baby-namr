@@ -42,6 +42,14 @@ module.exports = {
         use: ["style-loader", "css-loader"],
         exclude: /node-modules/,
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: "file-loader",
+          },
+        ],
+      },
     ],
   },
   plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],

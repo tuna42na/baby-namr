@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { NameListContext } from "./NameListContext";
 
 const ListItem = () => {
-  const { listView, onAdd } = useContext(NameListContext);
+  const { listView, onAdd, callChart } = useContext(NameListContext);
 
   return (
     <div>
@@ -10,7 +10,7 @@ const ListItem = () => {
         <tbody>
           {listView.map((item, i) => {
             return (
-              <tr key={i}>
+              <tr onClick={() => callChart(item.name, item.sex)} key={i}>
                 <td>
                   <button onClick={() => onAdd(item)}>+</button>
                 </td>
@@ -20,7 +20,8 @@ const ListItem = () => {
                 <td> Year: {item.year}</td>
                 <td>
                   {" "}
-                  Popularity: {Math.round((item.popularity / 1000) * 100)}%
+                  Popularity: {100 - Math.round((item.popularity / 1000) * 100)}
+                  %
                 </td>
               </tr>
             );

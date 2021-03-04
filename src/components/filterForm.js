@@ -4,21 +4,23 @@ import { NameListContext } from "./NameListContext";
 import "react-input-range/lib/css/index.css";
 
 const Form = () => {
-  const { callList } = useContext(NameListContext);
+  const { callList, filterDisplay, toggleDisplay } = useContext(
+    NameListContext
+  );
 
   const [gender, setGender] = useState("M");
   const [yearRange, setYearRange] = useState({ min: 1970, max: 1990 });
-  const [display, setDisplay] = useState("visible");
+  // const [display, setDisplay] = useState("visible");
 
   const handleSubmit = () => {
     let searchURL = `https://baby-namer-api.herokuapp.com/names?sex=${gender}&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
     callList(searchURL);
-    display === "visible" ? setDisplay("hidden") : setDisplay("visible");
+    toggleDisplay();
   };
 
   return (
     <>
-      <div style={{ visibility: display }} className="formPage">
+      <div style={{ visibility: filterDisplay }} className="formPage">
         <div className="modal-container">
           <div className="modal">
             <h2>Name Search</h2>
