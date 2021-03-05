@@ -3,6 +3,7 @@ import ListItem from "./listItem";
 import PreferenceList from "./preferenceList";
 import OrderNames from "./orderNames";
 import { NameListContext } from "./NameListContext";
+import babyChic from "../data/chic.png";
 
 const List = () => {
   const { list } = useContext(NameListContext);
@@ -10,7 +11,10 @@ const List = () => {
   return (
     <div className="list-page-container">
       {list.length < 10 ? (
-        <p> Loading... </p>
+        <div className="loading-chic">
+          <img src={babyChic} />
+          <p> Loading... </p>
+        </div>
       ) : (
         <>
           <div className="baby-name-container">

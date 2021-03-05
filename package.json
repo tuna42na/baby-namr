@@ -7,6 +7,7 @@
     "build": "webpack --config webpack.config.prod.js",
     "dev": "webpack-dev-server --open --config webpack.config.dev.js",
     "dev:hot": "npm run dev -- --hot",
+    "start": "node server.js",
     "test": "jest",
     "lint": "eslint ./",
     "format": "pretty-quick"
@@ -31,6 +32,7 @@
     "css-loader": "^4.2.2",
     "eslint": "^7.8.0",
     "eslint-plugin-react": "^7.20.6",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
     "jest": "^26.4.2",
@@ -46,8 +48,10 @@
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
     "axios": "^0.21.1",
+    "chart.js": "^2.9.4",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
+    "react-chartjs-2": "^2.11.1",
     "react-compound-slider": "^3.3.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",

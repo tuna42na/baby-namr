@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NameListContext } from "./NameListContext";
+import PopularityChart from "./popularityChart";
 
-const PreferenceList = (props) => {
+const PreferenceList = () => {
   const { preferences, onDelete } = useContext(NameListContext);
 
   return (
@@ -19,6 +20,7 @@ const PreferenceList = (props) => {
           })}
         </ul>
       </div>
+      <PopularityChart />
     </div>
   );
 };

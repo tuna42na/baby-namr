@@ -54,6 +54,21 @@ li {
   text-align: center;
 }
 
+/* Loading Page */
+.loading-chic > img {
+  width: 35vw;
+  border-radius: 50%;
+  box-shadow: -5px 5px 5px 5px #0000003d;
+}
+.loading-chic > p {
+  position: relative;
+  top: -20vh;
+  right: -6vh;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+
 /* Preferences */
 .preference-box {
   margin: 15px;
@@ -67,7 +82,7 @@ li {
 .preference-container {
   position: sticky;
   width: 30vw;
-  top: 20%;
+  top: 15%;
   align-self: baseline;
 }
 

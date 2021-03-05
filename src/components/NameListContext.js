@@ -19,8 +19,8 @@ class NameListProvider extends React.Component {
       ],
       listView: [
         {
-          name: "Helen",
-          year: 1998,
+          name: "",
+          year: 1880,
           id: 14,
           sex: "female",
           popularity: 20,
@@ -29,14 +29,24 @@ class NameListProvider extends React.Component {
       preferences: [],
       sortBy: "name",
       namesPerPage: 25,
-
+      chartData: [],
+      filterDisplay: "visible",
+      // Functional Export
       onChangeOrder: this.onChangeOrder,
       onChangeNumber: this.onChangeNumber,
       onAdd: this.onAdd,
       onDelete: this.onDelete,
       callList: this.callList,
+      createChart: this.createChart,
+      toggleDisplay: this.toggleDisplay,
     };
   }
+  // Toggle the filter form modal
+  toggleDisplay = () => {
+    const filterDisplay =
+      this.state.filterDisplay === "visible" ? "hidden" : "visible";
+    this.setState({ filterDisplay });
+  };
 
   // Call the List from the Server && Setting List Component
   callList = (listURL) => {
@@ -50,6 +60,44 @@ class NameListProvider extends React.Component {
       }
     };
     callNames();
+  };
+
+  // Calls the Popularity Chart Data
+  createChart = (selectedName, selectedSex) => {
+    const chartUrl = `https://baby-namer-api.herokuapp.com/names?name=${selectedName}&sex=${selectedSex}`;
+    const constructChart = async () => {
+      try {
+        const chartArray = await axios(chartUrl);
+        const dataObjectArray = chartArray.data.map((name) => ({
+          x: name.year,
+          y: name.count,
+        }));
+        const data = {
+          labels: [`${chartArray.data[0].name}`],
+          datasets: [
+            {
+              label: `${chartArray.data[0].name}'s Popularity`,
+              fill: false,
+              backgroundColor: "rgba(75,192,192,0.4)",
+              pointBorderColor: "rgba(75,192,192,1)",
+              pointBackgroundColor: "#fff",
+              pointBorderWidth: 1,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgba(75,192,192,1)",
+              pointHoverBorderColor: "rgba(220,220,220,1)",
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: dataObjectArray,
+            },
+          ],
+        };
+        this.setState({ chartData: data });
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    constructChart();
   };
 
   // Ordering Names Switch Function
@@ -72,7 +120,7 @@ class NameListProvider extends React.Component {
       }
     } else {
       const results = [...this.state.list].sort((a, b) => {
-        return b[value] - a[value];
+        return a[value] - b[value];
       });
       try {
         await this.setState({ list: results, listView: results });
@@ -97,7 +145,6 @@ class NameListProvider extends React.Component {
     if (!this.state.preferences.some((e) => e.name === item.name)) {
       const updatedPreferences = [...this.state.preferences, item];
       this.setState({ preferences: updatedPreferences });
-      console.log(updatedPreferences);
     }
   };
 
