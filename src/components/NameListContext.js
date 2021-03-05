@@ -37,15 +37,15 @@ class NameListProvider extends React.Component {
       onAdd: this.onAdd,
       onDelete: this.onDelete,
       callList: this.callList,
-      callChart: this.callChart,
+      createChart: this.createChart,
       toggleDisplay: this.toggleDisplay,
     };
   }
   // Toggle the filter form modal
   toggleDisplay = () => {
-    this.state.filterDisplay === "visible"
-      ? this.setState({ filterDisplay: "hidden" })
-      : this.setState({ filterDisplay: "visible" });
+    const filterDisplay =
+      this.state.filterDisplay === "visible" ? "hidden" : "visible";
+    this.setState({ filterDisplay });
   };
 
   // Call the List from the Server && Setting List Component
@@ -63,14 +63,14 @@ class NameListProvider extends React.Component {
   };
 
   // Calls the Popularity Chart Data
-  callChart = (selectedName, selectedSex) => {
+  createChart = (selectedName, selectedSex) => {
     const chartUrl = `https://baby-namer-api.herokuapp.com/names?name=${selectedName}&sex=${selectedSex}`;
     const constructChart = async () => {
       try {
         const chartArray = await axios(chartUrl);
         const dataObjectArray = chartArray.data.map((name) => ({
           x: name.year,
-          y: 1000 - name.popularity,
+          y: name.count,
         }));
         const data = {
           labels: [`${chartArray.data[0].name}`],

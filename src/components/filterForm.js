@@ -31,9 +31,9 @@ const Form = () => {
               name="gender"
               onChange={(e) => setGender(e.target.value)}
             >
-              <option value="M">male</option>
-              <option value="F">female</option>
-              <option value="B">both</option>
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+              <option value="B">Both</option>
             </select>
             <br />
             <label htmlFor="yearRange">Year Range</label>
