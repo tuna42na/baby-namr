@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { NameListContext } from "./NameListContext";
-import PopularityChart from "./popularityChart";
+import Chart, { ChartType } from "./Chart";
 
 const PreferenceList = () => {
-  const { preferences, onDelete } = useContext(NameListContext);
-
+  const { preferences, onDelete, chartData } = useContext(NameListContext);
+  const chart = chartData ? (
+    <Chart type={ChartType.SCATTER} data={chartData} />
+  ) : null;
   return (
     <div className="preference-container">
       <h1> Your Picks </h1>
@@ -20,7 +22,7 @@ const PreferenceList = () => {
           })}
         </ul>
       </div>
-      <PopularityChart />
+      {chart}
     </div>
   );
 };
