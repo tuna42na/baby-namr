@@ -29,7 +29,7 @@ class NameListProvider extends React.Component {
       preferences: [],
       sortBy: "name",
       namesPerPage: 25,
-      chartData: null,
+      nameHistory: null,
       filterDisplay: "visible",
       // Functional Export
       onChangeOrder: this.onChangeOrder,
@@ -37,7 +37,7 @@ class NameListProvider extends React.Component {
       onAdd: this.onAdd,
       onDelete: this.onDelete,
       callList: this.callList,
-      fetchChartData: this.fetchChartData,
+      fetchNameHistory: this.fetchNameHistory,
       toggleDisplay: this.toggleDisplay,
     };
   }
@@ -63,34 +63,28 @@ class NameListProvider extends React.Component {
   };
 
   // Fetches all records for the name and uses the response
-  // to populate `chartData`
-  fetchChartData = (selectedName, selectedSex) => {
-    const chartUrl = `https://baby-namer-api.herokuapp.com/names?name=${selectedName}&sex=${selectedSex}`;
-    const constructChart = async () => {
+  // to populate `nameHistory`
+  fetchNameHistory = (selectedName, selectedSex) => {
+    const url = `https://baby-namer-api.herokuapp.com/names?name=${selectedName}&sex=${selectedSex}`;
+    const updateNameHistory = async () => {
       let response;
       try {
-        response = await axios(chartUrl);
+        response = await axios(url);
         // TODO: validate response
       } catch (err) {
         console.log("failed to fetch name data: ", err);
         return;
       }
-      const points = response.data.map((name) => ({
-        x: name.year,
-        y: name.count,
-      }));
-      const name = `${response.data[0].name}`;
-      const chartData = {
-        series: [
-          {
-            label: `${name}`,
-            points: points,
-          },
-        ],
+      const nameHistory = {
+        name: selectedName,
+        data: response.data.map((name) => ({
+          year: name.year,
+          count: name.count,
+        })),
       };
-      this.setState({ chartData });
+      this.setState({ nameHistory });
     };
-    constructChart();
+    updateNameHistory();
   };
 
   // Ordering Names Switch Function
