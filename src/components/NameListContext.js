@@ -37,7 +37,7 @@ class NameListProvider extends React.Component {
       onAdd: this.onAdd,
       onDelete: this.onDelete,
       callList: this.callList,
-      createChart: this.createChart,
+      fetchChartData: this.fetchChartData,
       toggleDisplay: this.toggleDisplay,
     };
   }
@@ -62,8 +62,9 @@ class NameListProvider extends React.Component {
     callNames();
   };
 
-  // Calls the Popularity Chart Data
-  createChart = (selectedName, selectedSex) => {
+  // Fetches all records for the name and uses the response
+  // to populate `chartData`
+  fetchChartData = (selectedName, selectedSex) => {
     const chartUrl = `https://baby-namer-api.herokuapp.com/names?name=${selectedName}&sex=${selectedSex}`;
     const constructChart = async () => {
       let response;

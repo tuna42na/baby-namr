@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { NameListContext } from "./NameListContext";
 
 const ListItem = () => {
-  const { listView, onAdd, createChart } = useContext(NameListContext);
+  const { listView, onAdd, fetchChartData } = useContext(NameListContext);
 
   return (
     <div>
@@ -10,7 +10,7 @@ const ListItem = () => {
         <tbody>
           {listView.map((item, i) => {
             return (
-              <tr onClick={() => createChart(item.name, item.sex)} key={i}>
+              <tr onClick={() => fetchChartData(item.name, item.sex)} key={i}>
                 <td>
                   <button onClick={() => onAdd(item)}>+</button>
                 </td>
