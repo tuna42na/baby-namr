@@ -7,8 +7,11 @@ export const ChartType = {
 
 export default function Chart(props) {
   const { type, data } = props;
+  if (!type || !data) {
+    return null;
+  }
   const { series } = data;
-  let node = <div></div>;
+  let node = null;
   switch (type) {
     case ChartType.SCATTER:
       node = _createScatter(series);
