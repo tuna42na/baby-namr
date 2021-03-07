@@ -7,12 +7,11 @@ export const ChartType = {
 
 export default function Chart(props) {
   const { type, data } = props;
+  const { series } = data;
   let node = <div></div>;
   switch (type) {
     case ChartType.SCATTER:
-      {
-        node = _createScatter(data);
-      }
+      node = _createScatter(series);
       break;
     default: {
     }
@@ -20,10 +19,27 @@ export default function Chart(props) {
   return node;
 }
 
-function _createScatter(data) {
+function _createScatter(series) {
+  const data = {
+    datasets: series.map((s) => ({
+      label: s.label,
+      fill: false,
+      backgroundColor: "rgba(75,192,192,0.4)",
+      pointBorderColor: "rgba(75,192,192,1)",
+      pointBackgroundColor: "#fff",
+      pointBorderWidth: 1,
+      pointHoverRadius: 5,
+      pointHoverBackgroundColor: "rgba(75,192,192,1)",
+      pointHoverBorderColor: "rgba(220,220,220,1)",
+      pointHoverBorderWidth: 2,
+      pointRadius: 1,
+      pointHitRadius: 10,
+      data: s.points,
+    })),
+  };
   return (
     <div className="chart-container">
-      <Scatter data={data} />
+      <Scatter data={() => data} />
     </div>
   );
 }

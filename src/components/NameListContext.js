@@ -29,7 +29,7 @@ class NameListProvider extends React.Component {
       preferences: [],
       sortBy: "name",
       namesPerPage: 25,
-      chartData: [],
+      chartData: null,
       filterDisplay: "visible",
       // Functional Export
       onChangeOrder: this.onChangeOrder,
@@ -66,36 +66,28 @@ class NameListProvider extends React.Component {
   createChart = (selectedName, selectedSex) => {
     const chartUrl = `https://baby-namer-api.herokuapp.com/names?name=${selectedName}&sex=${selectedSex}`;
     const constructChart = async () => {
+      let response;
       try {
-        const chartArray = await axios(chartUrl);
-        const dataObjectArray = chartArray.data.map((name) => ({
-          x: name.year,
-          y: name.count,
-        }));
-        const data = {
-          labels: [`${chartArray.data[0].name}`],
-          datasets: [
-            {
-              label: `${chartArray.data[0].name}'s Popularity`,
-              fill: false,
-              backgroundColor: "rgba(75,192,192,0.4)",
-              pointBorderColor: "rgba(75,192,192,1)",
-              pointBackgroundColor: "#fff",
-              pointBorderWidth: 1,
-              pointHoverRadius: 5,
-              pointHoverBackgroundColor: "rgba(75,192,192,1)",
-              pointHoverBorderColor: "rgba(220,220,220,1)",
-              pointHoverBorderWidth: 2,
-              pointRadius: 1,
-              pointHitRadius: 10,
-              data: dataObjectArray,
-            },
-          ],
-        };
-        this.setState({ chartData: data });
+        response = await axios(chartUrl);
+        // TODO: validate response
       } catch (err) {
-        console.log(err);
+        console.log("failed to fetch name data: ", err);
+        return;
       }
+      const points = response.data.map((name) => ({
+        x: name.year,
+        y: name.count,
+      }));
+      const name = `${response.data[0].name}`;
+      const chartData = {
+        series: [
+          {
+            label: `${name}`,
+            points: points,
+          },
+        ],
+      };
+      this.setState({ chartData });
     };
     constructChart();
   };
