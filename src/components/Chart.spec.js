@@ -1,10 +1,10 @@
 import React from "react";
-import Enzyme, { shallow } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { shallow } from "enzyme";
 import Chart, { ChartType } from "./Chart";
 import { Scatter } from "react-chartjs-2";
+import { setup } from "../utils/enzyme";
 
-Enzyme.configure({ adapter: new Adapter() });
+setup();
 
 function getDummyData() {
   return {
