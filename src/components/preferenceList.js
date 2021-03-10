@@ -1,10 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { NameListContext } from "./NameListContext";
-import PopularityChart from "./popularityChart";
+import Chart, { ChartType } from "./Chart";
 
 const PreferenceList = () => {
-  const { preferences, onDelete } = useContext(NameListContext);
-
+  const { preferences, onDelete, nameHistory } = useContext(NameListContext);
+  let chart = null;
+  if (nameHistory) {
+    const data = {
+      series: [
+        {
+          label: nameHistory.name,
+          points: nameHistory.data.map((record) => ({
+            x: record.year,
+            y: record.count,
+          })),
+        },
+      ],
+    };
+    chart = <Chart type={ChartType.SCATTER} data={data} />;
+  }
   return (
     <div className="preference-container">
       <h1> Your Picks </h1>
@@ -20,7 +34,7 @@ const PreferenceList = () => {
           })}
         </ul>
       </div>
-      <PopularityChart />
+      {chart}
     </div>
   );
 };
