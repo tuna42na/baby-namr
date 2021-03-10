@@ -1,14 +1,16 @@
 import React from "react";
 import List from "./components/list";
-import Form from "./components/filterForm";
-
+import Login from "./components/login";
+import { Switch, Route } from "react-router-dom";
 import { NameListProvider } from "./components/NameListContext";
 
 const App = () => {
   return (
     <NameListProvider>
-      <Form />
-      <List />
+      <Switch>
+        <Route path="/" component={List} exact />
+        <Route path="/login" component={Login} />
+      </Switch>
     </NameListProvider>
   );
 };
