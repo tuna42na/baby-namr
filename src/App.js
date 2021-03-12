@@ -1,6 +1,6 @@
 import React from "react";
 import List from "./components/List";
-import Login from "./components/login";
+import Login from "./components/Login";
 import { Switch, Route } from "react-router-dom";
 import { NameListProvider } from "./components/NameListContext";
 
