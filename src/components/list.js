@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
-import ListItem from "./listItem";
-import PreferenceList from "./preferenceList";
-import OrderNames from "./orderNames";
+import Nav from "./Nav";
+import ListItem from "./ListItem";
+import PreferenceList from "./PreferenceList";
+import OrderNames from "./OrderNames";
 import { NameListContext } from "./NameListContext";
-import Form from "./filterForm";
+import Form from "./FilterForm";
 import babyChic from "../data/chic.png";
 
 const List = () => {
@@ -11,8 +12,8 @@ const List = () => {
 
   return (
     <div>
+      <Nav />
       <Form />
-
       <div className="list-page-container">
         {list.length < 10 ? (
           <div className="loading-chic">

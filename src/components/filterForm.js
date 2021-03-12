@@ -20,7 +20,7 @@ const Form = () => {
 
   return (
     <>
-      <div style={{ visibility: filterDisplay }} className="formPage">
+      <div style={{ display: filterDisplay }} className="formPage">
         <div className="modal-container">
           <div className="modal">
             <h2>Name Search</h2>

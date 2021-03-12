@@ -44,7 +44,7 @@ class NameListProvider extends React.Component {
   // Toggle the filter form modal
   toggleDisplay = () => {
     const filterDisplay =
-      this.state.filterDisplay === "visible" ? "hidden" : "visible";
+      this.state.filterDisplay !== "none" ? "none" : "inherit";
     this.setState({ filterDisplay });
   };
 
