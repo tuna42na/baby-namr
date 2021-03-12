@@ -27,7 +27,7 @@ class NameListProvider extends React.Component {
         },
       ],
       preferences: [],
-      sortBy: "name",
+      sortBy: "popularity",
       namesPerPage: 25,
       nameHistory: null,
       filterDisplay: "visible",
