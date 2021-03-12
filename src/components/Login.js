@@ -6,6 +6,7 @@ const Login = () => {
     <div>
       <Nav />
       <h1>Login Page</h1>
+      <span> This will be a login page </span>
       <div>
         <br />
         <input placeholder="username" />

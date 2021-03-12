@@ -1,5 +1,5 @@
 import React from "react";
-import List from "./components/list";
+import List from "./components/List";
 import Login from "./components/login";
 import { Switch, Route } from "react-router-dom";
 import { NameListProvider } from "./components/NameListContext";
