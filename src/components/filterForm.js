@@ -10,7 +10,7 @@ const Form = () => {
 
   const [gender, setGender] = useState("M");
   const [yearRange, setYearRange] = useState({ min: 1970, max: 1990 });
-  // const [display, setDisplay] = useState("visible");
+  const [year, setYear] = useState({ max: 1900 });
 
   const handleSubmit = () => {
     let searchURL = `https://baby-namer-api.herokuapp.com/names?sex=${gender}&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
@@ -23,6 +23,10 @@ const Form = () => {
       <div style={{ display: filterDisplay }} className="formPage">
         <div className="modal-container">
           <div className="modal">
+            <div className="close-window" onClick={() => toggleDisplay()}>
+              {" "}
+              X{" "}
+            </div>
             <h2>Name Search</h2>
             <br />
             <label htmlFor="gender">Baby's Gender: </label>

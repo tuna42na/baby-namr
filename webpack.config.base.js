@@ -25,7 +25,6 @@ module.exports = {
                   "not < 2%",
                   "not ie 11",
                 ],
-                useBuiltIns: "entry",
               },
             ],
             "@babel/preset-react",
@@ -55,5 +54,6 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
   },
+
   plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
 };

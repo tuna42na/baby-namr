@@ -121,3 +121,10 @@ li {
 .input-range {
   margin: 20px;
 }
+
+.close-window {
+  position: relative;
+  top: -20px;
+  align-self: flex-end;
+  right: -20px;
+}
