@@ -27,7 +27,7 @@ class NameListProvider extends React.Component {
         },
       ],
       preferences: [],
-      sortBy: "name",
+      sortBy: "popularity",
       namesPerPage: 25,
       nameHistory: null,
       filterDisplay: "visible",
@@ -44,7 +44,7 @@ class NameListProvider extends React.Component {
   // Toggle the filter form modal
   toggleDisplay = () => {
     const filterDisplay =
-      this.state.filterDisplay === "visible" ? "hidden" : "visible";
+      this.state.filterDisplay !== "none" ? "none" : "inherit";
     this.setState({ filterDisplay });
   };
 
