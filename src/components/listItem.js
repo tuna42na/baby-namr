@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NameListContext } from "./NameListContext";
+import { NameListContext } from "../contexts/NameListContext";
 
 const ListItem = () => {
   const { listView, onAdd, fetchNameHistory } = useContext(NameListContext);

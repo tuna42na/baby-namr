@@ -41,6 +41,7 @@ class NameListProvider extends React.Component {
       toggleDisplay: this.toggleDisplay,
     };
   }
+
   // Toggle the filter form modal
   toggleDisplay = () => {
     const filterDisplay =

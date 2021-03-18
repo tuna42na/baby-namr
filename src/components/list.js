@@ -3,7 +3,7 @@ import Nav from "./Nav";
 import ListItem from "./ListItem";
 import PreferenceList from "./PreferenceList";
 import OrderNames from "./OrderNames";
-import { NameListContext } from "./NameListContext";
+import { NameListContext } from "../contexts/NameListContext";
 import Form from "./FilterForm";
 import babyChic from "../data/chic.png";
 

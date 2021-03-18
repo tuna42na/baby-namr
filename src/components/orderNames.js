@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { NameListContext } from "./NameListContext";
+import { NameListContext } from "../contexts/NameListContext";
 
 const OrderNames = () => {
   const { onChangeOrder, onChangeNumber, toggleDisplay } = useContext(

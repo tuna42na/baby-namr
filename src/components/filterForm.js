@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import InputRange from "react-input-range";
-import { NameListContext } from "./NameListContext";
+import { NameListContext } from "../contexts/NameListContext";
 import "react-input-range/lib/css/index.css";
 
 const Form = () => {
@@ -20,7 +20,7 @@ const Form = () => {
 
   return (
     <>
-      <div style={{ display: filterDisplay }} className="formPage">
+      <div style={{ display: filterDisplay }} className="form-page">
         <div className="modal-container">
           <div className="modal">
             <div className="close-window" onClick={() => toggleDisplay()}>

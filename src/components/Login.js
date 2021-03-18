@@ -1,19 +1,23 @@
 import React from "react";
 import Nav from "./Nav";
+import { Link } from "react-router-dom";
+import FormBox from "../styled/FormBox";
 
 const Login = () => {
   return (
     <div>
       <Nav />
-      <h1>Login Page</h1>
-      <span> This will be a login page </span>
-      <div>
-        <br />
-        <input placeholder="username" />
-        <br />
-        <input placeholder="password" />
-        <br />
-        <input placeholder="retype password" />
+      <div className="page-container">
+        <FormBox>
+          <h1>Login Page</h1>
+          <span> This will be a login page </span>
+          <br />
+          <input placeholder="username" />
+          <br />
+          <input placeholder="password" />
+          <br />
+          Don't have an account? <Link to="/signup"> Create account </Link>
+        </FormBox>
       </div>
     </div>
   );
