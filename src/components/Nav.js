@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const Navigation = styled.nav`
+  position: sticky;
+  top: 0px;
   height: 10vh;
   background-color: #17bebb;
   color: #2b4570;

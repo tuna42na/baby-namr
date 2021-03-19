@@ -33,7 +33,6 @@ const SignUp = () => {
           <h1> Create Account </h1>
           <span> Let's help you create a profile: </span>
           <div>
-            <br />
             <input
               type="text"
               name="username"
