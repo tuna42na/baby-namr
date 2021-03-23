@@ -25,7 +25,7 @@ const Form = () => {
           <div className="modal">
             <div className="close-window" onClick={() => toggleDisplay()}>
               {" "}
-              X{" "}
+              X
             </div>
             <h2>Name Search</h2>
             <br />

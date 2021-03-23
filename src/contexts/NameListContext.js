@@ -9,13 +9,13 @@ class NameListProvider extends React.Component {
     super(props);
     this.state = {
       list: [
-        {
-          name: "",
-          year: 1880,
-          id: 14,
-          sex: "female",
-          popularity: 20,
-        },
+        // {
+        //   name: "",
+        //   year: 1880,
+        //   id: 14,
+        //   sex: "female",
+        //   popularity: 20,
+        // },
       ],
       listView: [
         {
@@ -29,11 +29,13 @@ class NameListProvider extends React.Component {
       preferences: [],
       sortBy: "popularity",
       namesPerPage: 25,
+      page: 1,
       nameHistory: null,
       filterDisplay: "visible",
       // Functional Export
       onChangeOrder: this.onChangeOrder,
       onChangeNumber: this.onChangeNumber,
+      onPageChange: this.onPageChange,
       onAdd: this.onAdd,
       onDelete: this.onDelete,
       callList: this.callList,
@@ -126,6 +128,17 @@ class NameListProvider extends React.Component {
     this.setState({ namesPerPage: number });
     let results = [...this.state.list];
     this.setState({ listView: results.splice(0, number) });
+    this.onPageChange(this.state.page);
+  };
+
+  // Change Page
+  onPageChange = (newPageNumber) => {
+    let pageStart = (newPageNumber - 1) * this.state.namesPerPage;
+    const newPageResults = [...this.state.list].splice(
+      pageStart,
+      this.state.namesPerPage
+    );
+    this.setState({ listView: newPageResults, page: newPageNumber });
   };
 
   // Add Preferences
