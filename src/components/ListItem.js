@@ -10,7 +10,11 @@ const ListItem = () => {
         <tbody>
           {listView.map((item, i) => {
             return (
-              <tr onClick={() => fetchNameHistory(item.name, item.sex)} key={i}>
+              <tr
+                onClick={() => fetchNameHistory(item.name, item.sex)}
+                key={i}
+                draggable="true"
+              >
                 <td>
                   <button onClick={() => onAdd(item)}>+</button>
                 </td>

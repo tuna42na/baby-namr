@@ -17,12 +17,13 @@ const Navigation = styled.nav`
 const NavLink = styled(Link)`
   color: #2b4570;
   text-decoration: none;
+  font-size: 3vh;
 `;
 
 const HomeLink = styled(NavLink)`
   outline: 2px solid #2b4570;
   outline-offset: 7px;
-  font-size: larger;
+  font-size: 3.5vh;
 `;
 
 const Nav = () => {

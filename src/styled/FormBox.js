@@ -5,14 +5,16 @@ const FormBox = styled.form`
   box-shadow: -5px 5px 3px #7180ac;
   color: white;
   padding: 20px;
+  min-width: 30vw;
   border-radius: 2px;
-  line-height: 2em;
+  font-size: 2.5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   input {
     border: none;
+    font-size: 2.5vh;
   }
   a {
     color: #2b4570;

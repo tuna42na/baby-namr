@@ -12,11 +12,13 @@ const Login = () => {
           <h1>Login Page</h1>
           <span> This will be a login page </span>
           <br />
-          <input placeholder="username" />
+          <input placeholder="Username" />
           <br />
-          <input placeholder="password" />
+          <input placeholder="Password" />
           <br />
-          Don't have an account? <Link to="/signup"> Create Account </Link>
+          <p>Don't have an account?</p>
+          <br />
+          <Link to="/signup"> Create Account </Link>
         </FormBox>
       </div>
     </div>

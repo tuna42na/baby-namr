@@ -32,33 +32,33 @@ const SignUp = () => {
         <FormBox onSubmit={handleSubmit}>
           <h1> Create Account </h1>
           <span> Let's help you create a profile: </span>
-          <div>
-            <input
-              type="text"
-              name="username"
-              value={username}
-              onChange={handleChange}
-              placeholder="Username"
-            />
-            <br />
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-              placeholder="Password"
-            />
-            <br />
-            <input
-              type="password"
-              name="repassword"
-              value={repassword}
-              onChange={handleChange}
-              placeholder="Retype Password"
-            />
-            <br />
-            <input type="submit" />
-          </div>
+          <br />
+
+          <input
+            type="text"
+            name="username"
+            value={username}
+            onChange={handleChange}
+            placeholder="Username"
+          />
+          <br />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+            placeholder="Password"
+          />
+          <br />
+          <input
+            type="password"
+            name="repassword"
+            value={repassword}
+            onChange={handleChange}
+            placeholder="Retype Password"
+          />
+          <br />
+          <input type="submit" />
         </FormBox>
       </div>
     </div>
