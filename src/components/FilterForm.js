@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import InputRange from "react-input-range";
+import Button from "../styled/Button";
 import { NameListContext } from "../contexts/NameListContext";
 import "react-input-range/lib/css/index.css";
 
@@ -54,7 +55,7 @@ const Form = () => {
             </div>
             <br />
             <span></span>
-            <button onClick={handleSubmit}> Search </button>
+            <Button onClick={handleSubmit}> Search </Button>
           </div>
         </div>
       </div>

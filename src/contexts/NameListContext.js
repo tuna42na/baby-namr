@@ -8,15 +8,7 @@ class NameListProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [
-        // {
-        //   name: "",
-        //   year: 1880,
-        //   id: 14,
-        //   sex: "female",
-        //   popularity: 20,
-        // },
-      ],
+      list: [],
       listView: [
         {
           name: "",
@@ -134,11 +126,19 @@ class NameListProvider extends React.Component {
   // Change Page
   onPageChange = (newPageNumber) => {
     let pageStart = (newPageNumber - 1) * this.state.namesPerPage;
-    const newPageResults = [...this.state.list].splice(
-      pageStart,
-      this.state.namesPerPage
-    );
-    this.setState({ listView: newPageResults, page: newPageNumber });
+    if (
+      newPageNumber < 1 ||
+      newPageNumber > this.state.list.length / this.state.namesPerPage
+    ) {
+      console.log(newPageNumber);
+      return;
+    } else {
+      const newPageResults = [...this.state.list].splice(
+        pageStart,
+        this.state.namesPerPage
+      );
+      this.setState({ listView: newPageResults, page: newPageNumber });
+    }
   };
 
   // Add Preferences
