@@ -2,12 +2,14 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 import FormBox from "../styled/FormBox";
 import Nav from "./Nav";
+import Button from "../styled/Button";
 
 const SignUp = () => {
   const { addNewUser } = useContext(UserContext);
   // Local New User State Construction
   const [newUser, setNewUser] = useState({
     username: "",
+    email: "",
     password: "",
     repassword: "",
   });
@@ -17,13 +19,14 @@ const SignUp = () => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };
 
+  // Checking
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewUser(newUser);
   };
 
   // Destructure for Form Usage;
-  const { username, password, repassword } = newUser;
+  const { username, email, password, repassword } = newUser;
 
   return (
     <div>
@@ -40,6 +43,16 @@ const SignUp = () => {
             value={username}
             onChange={handleChange}
             placeholder="Username"
+            required
+          />
+          <br />
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={handleChange}
+            placeholder="Email"
+            required
           />
           <br />
           <input
@@ -48,6 +61,7 @@ const SignUp = () => {
             value={password}
             onChange={handleChange}
             placeholder="Password"
+            required
           />
           <br />
           <input
@@ -56,9 +70,10 @@ const SignUp = () => {
             value={repassword}
             onChange={handleChange}
             placeholder="Retype Password"
+            required
           />
           <br />
-          <input type="submit" />
+          <Button type="submit">Submit</Button>
         </FormBox>
       </div>
     </div>

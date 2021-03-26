@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "./Nav";
 import { Link } from "react-router-dom";
+import Button from "../styled/Button";
 import FormBox from "../styled/FormBox";
 
 const Login = () => {
@@ -16,6 +17,7 @@ const Login = () => {
           <br />
           <input placeholder="Password" />
           <br />
+          <Button> Login </Button>
           <p>Don't have an account?</p>
           <br />
           <Link to="/signup"> Create Account </Link>
