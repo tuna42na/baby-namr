@@ -1,7 +1,12 @@
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 2em;
   font-family: sans-serif;
+}
+@media only screen and (min-width: 700px) {
+  html {
+    font-size: 1em;
+  }
 }
 
 *,
@@ -54,6 +59,10 @@ li {
   text-align: center;
 }
 
+.form-page {
+  transition: display 10s ease-out;
+}
+
 /* Loading Page */
 .loading-chic > img {
   width: 35vw;
@@ -103,11 +112,12 @@ li {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  background-color: rgb(0, 0, 0, 0.3);
+  background-color: #85858556;
 }
 
 .modal {
-  width: 40vw;
+  min-width: 50vw;
+  min-height: 50vh;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -120,4 +130,29 @@ li {
 
 .input-range {
   margin: 20px;
+}
+#yearRange {
+  width: 90%;
+}
+select {
+  font-size: 0.75em;
+}
+
+.close-window {
+  position: relative;
+  top: -20px;
+  align-self: flex-end;
+  right: -20px;
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background-color: #2b4570;
+}
+.dragged-item {
+  color: red;
+  cursor: grabbing;
 }

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "A Baby Naming Application",
   "main": "index.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "build": "webpack --config webpack.config.prod.js",
     "dev": "webpack-dev-server --open --config webpack.config.dev.js",
@@ -51,6 +54,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "axios": "^0.21.1",
+    "caniuse-lite": "^1.0.30001202",
     "chart.js": "^2.9.4",
     "core-js": "^2.6.5",
     "express": "^4.17.1",

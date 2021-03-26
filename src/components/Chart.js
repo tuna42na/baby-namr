@@ -28,7 +28,7 @@ function _createScatter(series) {
       label: s.label,
       fill: false,
       backgroundColor: "rgba(75,192,192,0.4)",
-      pointBorderColor: "rgba(75,192,192,1)",
+      pointBorderColor: "#E4572E",
       pointBackgroundColor: "#fff",
       pointBorderWidth: 1,
       pointHoverRadius: 5,

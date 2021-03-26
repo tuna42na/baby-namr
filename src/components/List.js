@@ -3,9 +3,10 @@ import Nav from "./Nav";
 import ListItem from "./ListItem";
 import PreferenceList from "./PreferenceList";
 import OrderNames from "./OrderNames";
-import { NameListContext } from "./NameListContext";
+import { NameListContext } from "../contexts/NameListContext";
 import Form from "./FilterForm";
 import babyChic from "../data/chic.png";
+import Pagination from "./Pagination";
 
 const List = () => {
   const { list } = useContext(NameListContext);
@@ -25,6 +26,7 @@ const List = () => {
             <div className="baby-name-container">
               <h1>Baby Names</h1>
               <OrderNames />
+              <Pagination />
               <ListItem />
             </div>
             <PreferenceList />

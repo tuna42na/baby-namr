@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { NameListContext } from "./NameListContext";
+import { NameListContext } from "../contexts/NameListContext";
+import Button from "../styled/Button";
 
 const OrderNames = () => {
   const { onChangeOrder, onChangeNumber, toggleDisplay } = useContext(
@@ -33,7 +34,7 @@ const OrderNames = () => {
         </select>
       </div>
       <br />
-      <button onClick={() => toggleDisplay()}> New Search </button>
+      <Button onClick={() => toggleDisplay()}> New Search </Button>
     </>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import InputRange from "react-input-range";
-import { NameListContext } from "./NameListContext";
+import Button from "../styled/Button";
+import { NameListContext } from "../contexts/NameListContext";
 import "react-input-range/lib/css/index.css";
 
 const Form = () => {
@@ -10,7 +11,7 @@ const Form = () => {
 
   const [gender, setGender] = useState("M");
   const [yearRange, setYearRange] = useState({ min: 1970, max: 1990 });
-  // const [display, setDisplay] = useState("visible");
+  const [year, setYear] = useState({ max: 1900 });
 
   const handleSubmit = () => {
     let searchURL = `https://baby-namer-api.herokuapp.com/names?sex=${gender}&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
@@ -20,9 +21,13 @@ const Form = () => {
 
   return (
     <>
-      <div style={{ display: filterDisplay }} className="formPage">
+      <div style={{ display: filterDisplay }} className="form-page">
         <div className="modal-container">
           <div className="modal">
+            <div className="close-window" onClick={() => toggleDisplay()}>
+              {" "}
+              X
+            </div>
             <h2>Name Search</h2>
             <br />
             <label htmlFor="gender">Baby's Gender: </label>
@@ -50,7 +55,7 @@ const Form = () => {
             </div>
             <br />
             <span></span>
-            <button onClick={handleSubmit}> Search </button>
+            <Button onClick={handleSubmit}> Search </Button>
           </div>
         </div>
       </div>

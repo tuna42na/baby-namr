@@ -1,9 +1,16 @@
 import React, { useContext } from "react";
-import { NameListContext } from "./NameListContext";
+import { NameListContext } from "../contexts/NameListContext";
 import Chart, { ChartType } from "./Chart";
 
 const PreferenceList = () => {
   const { preferences, onDelete, nameHistory } = useContext(NameListContext);
+
+  const handleDragOver = () => {
+    console.log("dragged!");
+    const draggedItem = document.querySelector(".dragged-item");
+    console.log(draggedItem);
+  };
+
   let chart = null;
   if (nameHistory) {
     const data = {
@@ -22,7 +29,7 @@ const PreferenceList = () => {
   return (
     <div className="preference-container">
       <h1> Your Picks </h1>
-      <div className="preference-box">
+      <div className="preference-box" onDragOver={() => handleDragOver()}>
         <ul>
           {preferences.map((item) => {
             return (
