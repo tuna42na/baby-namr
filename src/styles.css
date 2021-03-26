@@ -1,7 +1,12 @@
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 2em;
   font-family: sans-serif;
+}
+@media only screen and (min-width: 700px) {
+  html {
+    font-size: 1em;
+  }
 }
 
 *,
@@ -111,7 +116,8 @@ li {
 }
 
 .modal {
-  width: 40vw;
+  min-width: 50vw;
+  min-height: 50vh;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -124,6 +130,12 @@ li {
 
 .input-range {
   margin: 20px;
+}
+#yearRange {
+  width: 90%;
+}
+select {
+  font-size: 0.75em;
 }
 
 .close-window {
@@ -139,4 +151,8 @@ li {
   align-items: center;
   height: 90vh;
   background-color: #2b4570;
+}
+.dragged-item {
+  color: red;
+  cursor: grabbing;
 }

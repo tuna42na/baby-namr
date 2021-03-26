@@ -22,10 +22,15 @@ class UserProvider extends React.Component {
 
   // Add and Delete Actions
   addNewUser = (userData) => {
-    axios.post(USER_URL, { userData }).then((res) => {
-      console.log(res);
-      console.log(res.data);
-    });
+    console.log(userData);
+    axios
+      .post(USER_URL, { userData })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   deleteUser = (userId) => {
