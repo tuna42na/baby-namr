@@ -6,20 +6,24 @@ import Button from "../styled/Button";
 
 const SignUp = () => {
   const { addNewUser } = useContext(UserContext);
+
   // Local New User State Construction
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
     password: "",
-    repassword: "",
   });
+  const [repassword, setRepassword] = useState({ repassword: "" });
 
   // Input Field Handling
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };
+  const handlePassCheck = (e) => {
+    setRepassword({ ...repassword, repassword: e.target.vale });
+  };
 
-  // Checking
+  // Error Checking
   const handleSubmit = (e) => {
     e.preventDefault();
     addNewUser(newUser);
@@ -27,6 +31,7 @@ const SignUp = () => {
 
   // Destructure for Form Usage;
   const { username, email, password, repassword } = newUser;
+  const { repassword } = repassword;
 
   return (
     <div>
@@ -68,7 +73,7 @@ const SignUp = () => {
             type="password"
             name="repassword"
             value={repassword}
-            onChange={handleChange}
+            onChange={handlePassCheck}
             placeholder="Retype Password"
             required
           />

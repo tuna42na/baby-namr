@@ -22,9 +22,8 @@ class UserProvider extends React.Component {
 
   // Add and Delete Actions
   addNewUser = (userData) => {
-    console.log(userData);
     axios
-      .post(USER_URL, { userData })
+      .post(USER_URL, { ...userData })
       .then((res) => {
         console.log(res.data);
       })
@@ -38,6 +37,7 @@ class UserProvider extends React.Component {
   };
 
   // Login Actions
+  userLogin = (userData) => {};
 
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;
