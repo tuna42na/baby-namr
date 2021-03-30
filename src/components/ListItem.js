@@ -2,14 +2,18 @@ import React, { useContext } from "react";
 import { NameListContext } from "../contexts/NameListContext";
 
 const ListItem = () => {
-  const { listView, onAdd, fetchNameHistory } = useContext(NameListContext);
+  const { listView, onAdd, onDragged, fetchNameHistory } = useContext(
+    NameListContext
+  );
 
-  const handleDragStart = (e) => {
+  const handleDragStart = (e, item) => {
     e.target.classList.add("dragged-item");
+    onDragged(item);
   };
 
-  const handleDragEnd = (e) => {
+  const handleDragEnd = (e, item) => {
     e.target.classList.remove("dragged-item");
+    onDragged(null);
   };
 
   return (
@@ -22,8 +26,8 @@ const ListItem = () => {
                 onClick={() => fetchNameHistory(item.name, item.sex)}
                 key={i}
                 draggable="true"
-                onDragStart={(e) => handleDragStart(e)}
-                onDragEnd={(e) => handleDragEnd(e)}
+                onDragStart={(e) => handleDragStart(e, item)}
+                onDragEnd={(e) => handleDragEnd(e, item)}
               >
                 <td>
                   <button onClick={() => onAdd(item)}>+</button>

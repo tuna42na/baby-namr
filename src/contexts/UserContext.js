@@ -14,6 +14,9 @@ class UserProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentUser: "",
+      token: "",
+      submissionSuccess: false,
       // Functional Exports
       addNewUser: this.addNewUser,
       deleteUser: this.deleteUser,
@@ -25,7 +28,8 @@ class UserProvider extends React.Component {
     axios
       .post(USER_URL, { ...userData })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+        this.setState({ submissionSuccess: true, userName: res.data.username });
       })
       .catch((error) => {
         console.log(error);

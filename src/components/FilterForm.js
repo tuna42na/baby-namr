@@ -38,7 +38,6 @@ const Form = () => {
             >
               <option value="M">Male</option>
               <option value="F">Female</option>
-              <option value="B">Both</option>
             </select>
             <br />
             <label htmlFor="yearRange">Year Range</label>
