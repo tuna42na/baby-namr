@@ -11,7 +11,7 @@ const ListItem = () => {
     onDragged(item);
   };
 
-  const handleDragEnd = (e, item) => {
+  const handleDragEnd = (e) => {
     e.target.classList.remove("dragged-item");
     onDragged(null);
   };

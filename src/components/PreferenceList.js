@@ -11,15 +11,15 @@ const PreferenceList = () => {
 
   const handleDragOver = (e) => {
     e.preventDefault();
-    prefBox.classList.add("preference-drag");
+    prefBox.style.boxShadow = " -5px 5px 5px 5px #f5fbda";
   };
   const handleDragLeave = (e) => {
-    prefBox.classList.remove("preference-drag");
+    prefBox.style.boxShadow = " -5px 5px 5px 5px #0000003d";
   };
   const handleDrop = (e) => {
     e.preventDefault();
 
-    prefBox.classList.remove("preference-drag");
+    prefBox.style.boxShadow = " -5px 5px 5px 5px #0000003d";
     onAdd(draggedItem);
   };
 

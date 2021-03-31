@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 const Navigation = styled.nav`
   position: sticky;
@@ -27,10 +28,15 @@ const HomeLink = styled(NavLink)`
 `;
 
 const Nav = () => {
+  const { currentUser } = useContext(UserContext);
   return (
     <Navigation>
       <HomeLink to="/">Baby Namr</HomeLink>
-      <NavLink to={"/login"}> Login </NavLink>
+      {currentUser ? (
+        <NavLink>{currentUser}</NavLink>
+      ) : (
+        <NavLink to={"/login"}> Login </NavLink>
+      )}
     </Navigation>
   );
 };

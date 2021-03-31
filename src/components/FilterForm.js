@@ -11,7 +11,7 @@ const Form = () => {
 
   const [gender, setGender] = useState("M");
   const [yearRange, setYearRange] = useState({ min: 1970, max: 1990 });
-  const [year, setYear] = useState({ max: 1900 });
+  const [year, setYear] = useState(1900);
 
   const handleSubmit = () => {
     let searchURL = `https://baby-namer-api.herokuapp.com/names?sex=${gender}&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
@@ -52,6 +52,18 @@ const Form = () => {
                 }}
               />
             </div>
+            {/* <div id="yearRange">
+              <input
+                draggableTrack
+                class="year-slider"
+                type="range"
+                min="1880"
+                max="2019"
+                value={year}
+                onChange={(year) => {
+                  setYear(year);
+                }}></input>
+            </div> */}
             <br />
             <span></span>
             <Button onClick={handleSubmit}> Search </Button>

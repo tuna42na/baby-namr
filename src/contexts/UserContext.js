@@ -20,6 +20,7 @@ class UserProvider extends React.Component {
       // Functional Exports
       addNewUser: this.addNewUser,
       deleteUser: this.deleteUser,
+      loginUser: this.loginUser,
     };
   }
 
@@ -41,7 +42,18 @@ class UserProvider extends React.Component {
   };
 
   // Login Actions
-  userLogin = (userData) => {};
+  loginUser = (userData) => {
+    axios
+      .post(LOGIN_URL, { ...userData })
+      .then((res) => {
+        const userReturn = res.data.user.username;
+        const userToken = res.data.user.token;
+        this.setState({ currentUser: userReturn, token: userToken });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;

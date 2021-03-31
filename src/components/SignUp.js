@@ -83,6 +83,7 @@ const SignUp = () => {
               value={email}
               onChange={handleChange}
               placeholder="Email"
+              autoComplete="email"
               required
             />
             <br />
@@ -93,6 +94,7 @@ const SignUp = () => {
               value={password}
               onChange={handleChange}
               placeholder="Password"
+              autoComplete="new-password"
               required
             />
             <br />
@@ -103,6 +105,7 @@ const SignUp = () => {
               value={re_password}
               onChange={handleChange}
               placeholder="Retype Password"
+              autoComplete="new-password"
               required
             />
             <br />
