@@ -33,7 +33,7 @@ const Nav = () => {
     <Navigation>
       <HomeLink to="/">Baby Namr</HomeLink>
       {currentUser ? (
-        <NavLink>{currentUser}</NavLink>
+        <NavLink to={"/profile"}>{currentUser}</NavLink>
       ) : (
         <NavLink to={"/login"}> Login </NavLink>
       )}

@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand");
+
 html {
   box-sizing: border-box;
   font-size: 2em;
-  font-family: sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 @media only screen and (min-width: 700px) {
   html {
@@ -153,6 +155,10 @@ select {
   height: 90vh;
   background-color: #2b4570;
 }
+tr :hover {
+  cursor: grab;
+}
+
 .dragged-item {
   background-color: #2b4570;
   color: white;
