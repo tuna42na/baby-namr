@@ -14,8 +14,14 @@ class UserProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentUser: "",
+      token: "",
+      submissionSuccess: false,
       // Functional Exports
       addNewUser: this.addNewUser,
+      updateUser: this.updateUser,
+      loginUser: this.loginUser,
+      logoutUser: this.logoutUser,
       deleteUser: this.deleteUser,
     };
   }
@@ -25,19 +31,41 @@ class UserProvider extends React.Component {
     axios
       .post(USER_URL, { ...userData })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+        this.setState({
+          submissionSuccess: true,
+          currentUser: res.data.username,
+        });
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  updateUser = () => {};
+
+  // Login Actions
+  loginUser = (userData) => {
+    axios
+      .post(LOGIN_URL, { ...userData })
+      .then((res) => {
+        console.log(res);
+        const userReturn = res.data.user.username;
+        const userToken = res.data.user.token;
+        this.setState({ currentUser: userReturn, token: userToken });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  logoutUser = () => {
+    this.setState({ currentUser: "", token: "" });
+  };
+
+  // User Deletion
   deleteUser = (userId) => {
     axios.delete(PROFILE_URL(userId));
   };
-
-  // Login Actions
-  userLogin = (userData) => {};
 
   render() {
     return <Provider value={this.state}>{this.props.children}</Provider>;

@@ -3,12 +3,24 @@ import { NameListContext } from "../contexts/NameListContext";
 import Chart, { ChartType } from "./Chart";
 
 const PreferenceList = () => {
-  const { preferences, onDelete, nameHistory } = useContext(NameListContext);
+  const { preferences, onDelete, onAdd, draggedItem, nameHistory } = useContext(
+    NameListContext
+  );
 
-  const handleDragOver = () => {
-    console.log("dragged!");
-    const draggedItem = document.querySelector(".dragged-item");
-    console.log(draggedItem);
+  let prefBox = document.querySelector(".preference-box");
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    prefBox.style.boxShadow = " -5px 5px 5px 5px #f5fbda";
+  };
+  const handleDragLeave = (e) => {
+    prefBox.style.boxShadow = " -5px 5px 5px 5px #0000003d";
+  };
+  const handleDrop = (e) => {
+    e.preventDefault();
+
+    prefBox.style.boxShadow = " -5px 5px 5px 5px #0000003d";
+    onAdd(draggedItem);
   };
 
   let chart = null;
@@ -29,7 +41,12 @@ const PreferenceList = () => {
   return (
     <div className="preference-container">
       <h1> Your Picks </h1>
-      <div className="preference-box" onDragOver={() => handleDragOver()}>
+      <div
+        className="preference-box"
+        onDragOver={(e) => handleDragOver(e)}
+        onDragLeave={(e) => handleDragLeave(e)}
+        onDrop={(e) => handleDrop(e)}
+      >
         <ul>
           {preferences.map((item) => {
             return (

@@ -19,6 +19,7 @@ class NameListProvider extends React.Component {
         },
       ],
       preferences: [],
+      draggedItem: null,
       sortBy: "popularity",
       namesPerPage: 25,
       page: 1,
@@ -33,6 +34,7 @@ class NameListProvider extends React.Component {
       callList: this.callList,
       fetchNameHistory: this.fetchNameHistory,
       toggleDisplay: this.toggleDisplay,
+      onDragged: this.onDragged,
     };
   }
 
@@ -65,7 +67,6 @@ class NameListProvider extends React.Component {
       let response;
       try {
         response = await axios(url);
-        // TODO: validate response
       } catch (err) {
         console.log("failed to fetch name data: ", err);
         return;
@@ -147,6 +148,9 @@ class NameListProvider extends React.Component {
       const updatedPreferences = [...this.state.preferences, item];
       this.setState({ preferences: updatedPreferences });
     }
+  };
+  onDragged = (item) => {
+    this.setState({ draggedItem: item });
   };
 
   // Take Away Preferences

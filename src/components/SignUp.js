@@ -1,85 +1,122 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import FormBox from "../styled/FormBox";
 import Nav from "./Nav";
 import Button from "../styled/Button";
+import { validate } from "webpack";
 
 const SignUp = () => {
-  const { addNewUser } = useContext(UserContext);
+  const { addNewUser, submissionSuccess, currentUser } = useContext(
+    UserContext
+  );
 
   // Local New User State Construction
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
     password: "",
+    re_password: "",
   });
-  const [repassword, setRepassword] = useState({ repassword: "" });
+  const [validations, setValidations] = useState({
+    userValidated: false,
+  });
+
+  // Update Validation Checking
+  useEffect(() => {
+    validate();
+  }, [newUser]);
+
+  // Check Validation
+  const { userValidated } = validations;
+  const validate = () => {
+    let userTest = username.length > 4 && username.length < 25;
+    let passwordTest = password == re_password && password.length > 7;
+    let allTests = userTest && passwordTest;
+    if (allTests) {
+      setValidations({ ...validations, userValidated: true });
+    } else {
+      setValidations({ ...validations, userValidated: false });
+    }
+  };
 
   // Input Field Handling
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };
-  const handlePassCheck = (e) => {
-    setRepassword({ ...repassword, repassword: e.target.vale });
-  };
 
-  // Error Checking
+  // Submission Button
   const handleSubmit = (e) => {
     e.preventDefault();
-    addNewUser(newUser);
+    userValidated
+      ? addNewUser(newUser)
+      : alert(
+          "Oh no! Something went wrong. Check to make sure that your Username and Passwords are correct and try again."
+        );
   };
 
   // Destructure for Form Usage;
-  const { username, email, password, repassword } = newUser;
-  const { repassword } = repassword;
+  const { username, email, password, re_password } = newUser;
 
   return (
     <div>
       <Nav />
       <div className="page-container">
-        <FormBox onSubmit={handleSubmit}>
-          <h1> Create Account </h1>
-          <span> Let's help you create a profile: </span>
-          <br />
+        {!submissionSuccess ? (
+          <FormBox onSubmit={handleSubmit}>
+            <h1> Create Account </h1>
+            <span> Let's help you create a profile: </span>
+            <br />
 
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={handleChange}
-            placeholder="Username"
-            required
-          />
-          <br />
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Email"
-            required
-          />
-          <br />
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-          <br />
-          <input
-            type="password"
-            name="repassword"
-            value={repassword}
-            onChange={handlePassCheck}
-            placeholder="Retype Password"
-            required
-          />
-          <br />
-          <Button type="submit">Submit</Button>
-        </FormBox>
+            <input
+              name="username"
+              title="Enter a name between 4 and 25 Characters"
+              type="text"
+              value={username}
+              onChange={handleChange}
+              placeholder="Username"
+              required
+            />
+            <br />
+            <input
+              name="email"
+              title="Enter your email here"
+              type="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Email"
+              autoComplete="email"
+              required
+            />
+            <br />
+            <input
+              name="password"
+              title="Enter a password 8 characters or longer"
+              type="password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Password"
+              autoComplete="new-password"
+              required
+            />
+            <br />
+            <input
+              name="re_password"
+              title="Please re-enter the password from above"
+              type="password"
+              value={re_password}
+              onChange={handleChange}
+              placeholder="Retype Password"
+              autoComplete="new-password"
+              required
+            />
+            <br />
+            <Button type="submit">Submit</Button>
+          </FormBox>
+        ) : (
+          <FormBox>
+            <h1>Welcome {currentUser}</h1>
+          </FormBox>
+        )}
       </div>
     </div>
   );
