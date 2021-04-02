@@ -3,6 +3,7 @@ import { UserContext } from "../contexts/UserContext";
 import FormBox from "../styled/FormBox";
 import Nav from "./Nav";
 import Button from "../styled/Button";
+import { validate } from "webpack";
 
 const SignUp = () => {
   const { addNewUser, submissionSuccess, currentUser } = useContext(
@@ -22,12 +23,12 @@ const SignUp = () => {
 
   // Update Validation Checking
   useEffect(() => {
-    checkValidation();
+    validate();
   }, [newUser]);
 
   // Check Validation
   const { userValidated } = validations;
-  const checkValidation = () => {
+  const validate = () => {
     let userTest = username.length > 4 && username.length < 25;
     let passwordTest = password == re_password && password.length > 7;
     let allTests = userTest && passwordTest;
