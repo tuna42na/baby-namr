@@ -10,13 +10,31 @@ const Form = () => {
   );
 
   const [gender, setGender] = useState("M");
-  const [yearRange, setYearRange] = useState({ min: 1970, max: 1990 });
-  const [year, setYear] = useState(1900);
+  const [rangeToggle, setRangeToggle] = useState(false);
+  const [yearRange, setYearRange] = useState({ min: 1950, max: 1990 });
+  const [year, setYear] = useState(1950);
 
   const handleSubmit = () => {
-    let searchURL = `https://baby-namer-api.herokuapp.com/names?sex=${gender}&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
+    let searchURL = `https://baby-namer-api.herokuapp.com/names?sex=${gender}&yearStart=${year}`;
+    if (rangeToggle) {
+      searchURL = `https://baby-namer-api.herokuapp.com/names?sex=${gender}&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
+    }
     callList(searchURL);
     toggleDisplay();
+  };
+
+  const toggleRange = () => {
+    // Activated before range state changes
+    if (!rangeToggle) {
+      if (yearRange.max <= year) {
+        setYearRange({ ...yearRange, max: year, min: yearRange.max });
+      } else {
+        setYearRange({ ...yearRange, min: year });
+      }
+    } else {
+      setYear(yearRange.min);
+    }
+    rangeToggle ? setRangeToggle(false) : setRangeToggle(true);
   };
 
   return (
@@ -40,30 +58,53 @@ const Form = () => {
               <option value="F">Female</option>
             </select>
             <br />
-            <label htmlFor="yearRange">Year Range</label>
-            <div id="yearRange">
-              <InputRange
-                draggableTrack
-                minValue={1880}
-                maxValue={2019}
-                value={yearRange}
-                onChange={(value) => {
-                  setYearRange(value);
-                }}
-              />
-            </div>
-            {/* <div id="yearRange">
-              <input
-                draggableTrack
-                class="year-slider"
-                type="range"
-                min="1880"
-                max="2019"
-                value={year}
-                onChange={(year) => {
-                  setYear(year);
-                }}></input>
-            </div> */}
+            {rangeToggle ? (
+              <>
+                <div>
+                  <label htmlFor="yearRange">Year Range</label>
+                  <Button
+                    style={{ float: "right" }}
+                    onClick={() => toggleRange()}
+                  >
+                    Year?
+                  </Button>
+                </div>
+                <div id="yearRange">
+                  <InputRange
+                    draggableTrack
+                    minValue={1880}
+                    maxValue={2019}
+                    value={yearRange}
+                    onChange={(value) => {
+                      setYearRange(value);
+                    }}
+                  />
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <label htmlFor="year">Year</label>
+                  <Button
+                    style={{ float: "right" }}
+                    onClick={() => toggleRange()}
+                  >
+                    Year Range?
+                  </Button>
+                </div>
+                <div id="year">
+                  <InputRange
+                    draggableTrack
+                    minValue={1880}
+                    maxValue={2019}
+                    value={year}
+                    onChange={(value) => {
+                      setYear(value);
+                    }}
+                  />
+                </div>
+              </>
+            )}
             <br />
             <span></span>
             <Button onClick={handleSubmit}> Search </Button>
