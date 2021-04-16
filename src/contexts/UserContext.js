@@ -25,6 +25,11 @@ class UserProvider extends React.Component {
       deleteUser: this.deleteUser,
     };
   }
+  componentDidMount() {
+    let localUser = localStorage.getItem("currentUser");
+    let userToken = localStorage.getItem("token");
+    this.setState({ ...this.state, currentUser: localUser, token: userToken });
+  }
 
   // Add and Delete Actions
   addNewUser = (userData) => {
@@ -51,8 +56,10 @@ class UserProvider extends React.Component {
       .then((res) => {
         console.log(res);
         const userReturn = res.data.user.username;
-        const userToken = res.data.user.token;
+        const userToken = res.data.token;
         this.setState({ currentUser: userReturn, token: userToken });
+        localStorage.setItem("currentUser", userReturn);
+        localStorage.setItem("token", userToken);
       })
       .catch((error) => {
         console.log(error);
@@ -60,6 +67,8 @@ class UserProvider extends React.Component {
   };
   logoutUser = () => {
     this.setState({ currentUser: "", token: "" });
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("token");
   };
 
   // User Deletion

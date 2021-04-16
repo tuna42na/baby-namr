@@ -140,10 +140,10 @@ li {
 }
 #year .input-range .input-range__track--active {
   background: none;
-  transition: all 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 #yearRange .input-range .input-range__track--active {
-  transition: background 1s ease-in-out;
+  transition: background 0.5s ease-in;
 }
 
 select {

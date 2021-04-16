@@ -21,7 +21,6 @@ const Form = () => {
       searchURL =
         baseURL + `&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
     }
-    console.log(searchURL);
     callList(searchURL);
     toggleDisplay();
   };
