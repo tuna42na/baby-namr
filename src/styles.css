@@ -134,9 +134,18 @@ li {
 .input-range {
   margin: 20px;
 }
-#yearRange {
+#yearRange,
+#year {
   width: 90%;
 }
+#year .input-range .input-range__track--active {
+  background: none;
+  transition: all 0.5s ease-in-out;
+}
+#yearRange .input-range .input-range__track--active {
+  transition: background 1s ease-in-out;
+}
+
 select {
   font-size: 0.75em;
 }
@@ -146,6 +155,7 @@ select {
   top: -20px;
   align-self: flex-end;
   right: -20px;
+  cursor: pointer;
 }
 
 .page-container {
@@ -163,14 +173,4 @@ tr :hover {
   background-color: #2b4570;
   color: white;
   cursor: grabbing;
-}
-
-.year-slider {
-  background: #eeeeee;
-  border-radius: 0.3rem;
-  cursor: pointer;
-  display: block;
-  height: 0.3rem;
-  position: relative;
-  transition: left 0.3s ease-out, width 0.3s ease-out;
 }

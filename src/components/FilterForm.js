@@ -10,13 +10,49 @@ const Form = () => {
   );
 
   const [gender, setGender] = useState("M");
-  const [yearRange, setYearRange] = useState({ min: 1970, max: 1990 });
-  const [year, setYear] = useState(1900);
+  const [rangeToggle, setRangeToggle] = useState(false);
+  const [yearRange, setYearRange] = useState({ min: 1950, max: 1990 });
+  const [year, setYear] = useState(1950);
 
   const handleSubmit = () => {
-    let searchURL = `https://baby-namer-api.herokuapp.com/names?sex=${gender}&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
+    let baseURL = `https://baby-namer-api.herokuapp.com/names?sex=${gender}`;
+    let searchURL = baseURL + `&yearStart=${year}`;
+    if (!rangeToggle) {
+      searchURL =
+        baseURL + `&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
+    }
+    console.log(searchURL);
     callList(searchURL);
     toggleDisplay();
+  };
+
+  // Conditional Rendering Logic
+  let yearLabel, buttonLabel, yearValue, sliderId;
+  rangeToggle
+    ? ((yearLabel = "Year"),
+      (buttonLabel = "Year Range?"),
+      (yearValue = year),
+      (sliderId = "year"))
+    : ((yearLabel = "Year Range"),
+      (buttonLabel = "Year?"),
+      (yearValue = yearRange),
+      (sliderId = "yearRange"));
+  const handleYearChange = (value) => {
+    rangeToggle ? setYear(value) : setYearRange(value);
+  };
+
+  const toggleRange = () => {
+    // Activated before range state changes
+    if (rangeToggle) {
+      if (yearRange.max <= year) {
+        setYearRange({ ...yearRange, max: year, min: yearRange.max });
+      } else {
+        setYearRange({ ...yearRange, min: year });
+      }
+    } else {
+      setYear(yearRange.min);
+    }
+    rangeToggle ? setRangeToggle(false) : setRangeToggle(true);
   };
 
   return (
@@ -25,8 +61,7 @@ const Form = () => {
         <div className="modal-container">
           <div className="modal">
             <div className="close-window" onClick={() => toggleDisplay()}>
-              {" "}
-              X
+              x
             </div>
             <h2>Name Search</h2>
             <br />
@@ -40,30 +75,25 @@ const Form = () => {
               <option value="F">Female</option>
             </select>
             <br />
-            <label htmlFor="yearRange">Year Range</label>
-            <div id="yearRange">
+
+            <div>
+              <label htmlFor={sliderId}> {yearLabel} </label>
+              <Button style={{ float: "right" }} onClick={() => toggleRange()}>
+                {buttonLabel}
+              </Button>
+            </div>
+            <div id={sliderId}>
               <InputRange
                 draggableTrack
                 minValue={1880}
                 maxValue={2019}
-                value={yearRange}
+                value={yearValue}
                 onChange={(value) => {
-                  setYearRange(value);
+                  handleYearChange(value);
                 }}
               />
             </div>
-            {/* <div id="yearRange">
-              <input
-                draggableTrack
-                class="year-slider"
-                type="range"
-                min="1880"
-                max="2019"
-                value={year}
-                onChange={(year) => {
-                  setYear(year);
-                }}></input>
-            </div> */}
+
             <br />
             <span></span>
             <Button onClick={handleSubmit}> Search </Button>

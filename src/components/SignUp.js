@@ -3,7 +3,6 @@ import { UserContext } from "../contexts/UserContext";
 import FormBox from "../styled/FormBox";
 import Nav from "./Nav";
 import Button from "../styled/Button";
-import { validate } from "webpack";
 
 const SignUp = () => {
   const { addNewUser, submissionSuccess, currentUser } = useContext(

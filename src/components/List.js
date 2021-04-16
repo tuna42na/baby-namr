@@ -28,6 +28,7 @@ const List = () => {
               <OrderNames />
               <Pagination />
               <ListItem />
+              <Pagination />
             </div>
             <PreferenceList />
           </>
