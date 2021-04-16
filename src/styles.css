@@ -140,7 +140,12 @@ li {
 }
 #year .input-range .input-range__track--active {
   background: none;
+  transition: all 0.5s ease-in-out;
 }
+#yearRange .input-range .input-range__track--active {
+  transition: background 1s ease-in-out;
+}
+
 select {
   font-size: 0.75em;
 }
@@ -150,6 +155,7 @@ select {
   top: -20px;
   align-self: flex-end;
   right: -20px;
+  cursor: pointer;
 }
 
 .page-container {
