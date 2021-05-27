@@ -119,7 +119,7 @@ li {
 }
 
 .modal {
-  min-width: 50vw;
+  width: 400px;
   min-height: 50vh;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -144,6 +144,10 @@ li {
 }
 #yearRange .input-range .input-range__track--active {
   transition: background 0.5s ease-in;
+}
+
+.order-bar {
+  padding: 10px;
 }
 
 select {

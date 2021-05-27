@@ -58,7 +58,11 @@ const PreferenceList = () => {
           })}
         </ul>
       </div>
-      {chart}
+      {chart ? (
+        chart
+      ) : (
+        <h2>Click on a name to see it's popularity over time </h2>
+      )}
     </div>
   );
 };

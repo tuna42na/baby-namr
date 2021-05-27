@@ -24,7 +24,6 @@ const List = () => {
         ) : (
           <>
             <div className="baby-name-container">
-              <h1>Baby Names</h1>
               <OrderNames />
               <Pagination />
               <ListItem />

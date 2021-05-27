@@ -28,6 +28,7 @@ const ListItem = () => {
                 draggable="true"
                 onDragStart={(e) => handleDragStart(e, item)}
                 onDragEnd={(e) => handleDragEnd(e, item)}
+                title="Click '+' button or drag to save to Your Picks"
               >
                 <td>
                   <button onClick={() => onAdd(item)}>+</button>
