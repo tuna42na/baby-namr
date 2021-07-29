@@ -41,7 +41,7 @@ function _createScatter(series) {
     })),
   };
   return (
-    <div className="chart-container">
+    <div className="chart-container" id="chart-container">
       <Scatter data={() => data} />
     </div>
   );

@@ -24,6 +24,7 @@ const ListItem = () => {
             return (
               <tr
                 onClick={() => fetchNameHistory(item.name, item.sex)}
+                href="#chart-container"
                 key={i}
                 draggable="true"
                 onDragStart={(e) => handleDragStart(e, item)}
