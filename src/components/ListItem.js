@@ -24,10 +24,12 @@ const ListItem = () => {
             return (
               <tr
                 onClick={() => fetchNameHistory(item.name, item.sex)}
+                href="#chart-container"
                 key={i}
                 draggable="true"
                 onDragStart={(e) => handleDragStart(e, item)}
                 onDragEnd={(e) => handleDragEnd(e, item)}
+                title="Click '+' button or drag to save to Your Picks"
               >
                 <td>
                   <button onClick={() => onAdd(item)}>+</button>

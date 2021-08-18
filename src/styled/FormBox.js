@@ -20,4 +20,5 @@ const FormBox = styled.form`
     color: #2b4570;
   }
 `;
+
 export default FormBox;

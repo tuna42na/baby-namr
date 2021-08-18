@@ -9,7 +9,7 @@ const OrderNames = () => {
 
   return (
     <>
-      <div>
+      <div className="order-bar">
         <label>Sort Names by: </label>
         <select
           name="filter"

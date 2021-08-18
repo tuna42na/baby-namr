@@ -10,7 +10,7 @@ const Form = () => {
   );
 
   const [gender, setGender] = useState("M");
-  const [rangeToggle, setRangeToggle] = useState(false);
+  const [rangeToggle, setRangeToggle] = useState(true);
   const [yearRange, setYearRange] = useState({ min: 1950, max: 1990 });
   const [year, setYear] = useState(1950);
 
@@ -21,7 +21,6 @@ const Form = () => {
       searchURL =
         baseURL + `&yearStart=${yearRange.min}&yearEnd=${yearRange.max}`;
     }
-    console.log(searchURL);
     callList(searchURL);
     toggleDisplay();
   };
