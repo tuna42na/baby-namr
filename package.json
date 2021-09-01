@@ -45,14 +45,15 @@
     "prettier": "^2.1.1",
     "pretty-quick": "^3.0.0",
     "style-loader": "^1.2.1",
-    "webpack": "^4.44.1",
+    "webpack": "^5.51.1",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^4.1.0",
     "webpack-merge": "^5.1.2"
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
+    "@types/react-transition-group": "^4.4.2",
     "axios": "^0.21.1",
     "caniuse-lite": "^1.0.30001202",
     "chart.js": "^2.9.4",
