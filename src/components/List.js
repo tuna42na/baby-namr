@@ -23,14 +23,13 @@ const List = () => {
           </div>
         ) : (
           <>
+            <PreferenceList />
             <div className="baby-name-container">
-              <h1>Baby Names</h1>
               <OrderNames />
               <Pagination />
               <ListItem />
               <Pagination />
             </div>
-            <PreferenceList />
           </>
         )}
       </div>

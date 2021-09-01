@@ -2,13 +2,8 @@
 
 html {
   box-sizing: border-box;
-  font-size: 2em;
+  font-size: 20px;
   font-family: "Quicksand", sans-serif;
-}
-@media only screen and (min-width: 700px) {
-  html {
-    font-size: 1em;
-  }
 }
 
 *,
@@ -57,7 +52,7 @@ li {
 }
 
 .baby-name-container {
-  min-width: 60%;
+  min-width: 80vw;
   text-align: center;
 }
 
@@ -92,8 +87,8 @@ li {
 }
 
 .preference-container {
-  position: sticky;
-  width: 30vw;
+  position: default;
+  width: 90vw;
   top: 15%;
   align-self: baseline;
 }
@@ -119,7 +114,7 @@ li {
 }
 
 .modal {
-  min-width: 50vw;
+  width: 400px;
   min-height: 50vh;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -140,10 +135,14 @@ li {
 }
 #year .input-range .input-range__track--active {
   background: none;
-  transition: all 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
 #yearRange .input-range .input-range__track--active {
-  transition: background 1s ease-in-out;
+  transition: background 0.5s ease-in;
+}
+
+.order-bar {
+  padding: 10px;
 }
 
 select {
@@ -173,4 +172,18 @@ tr :hover {
   background-color: #2b4570;
   color: white;
   cursor: grabbing;
+}
+
+/* Mobile Stylings */
+@media only screen and (min-width: 790px) {
+  html {
+    font-size: 1.5em;
+  }
+  .preference-container {
+    width: 30vw;
+    position: sticky;
+  }
+  .baby-name-container {
+    min-width: 60%;
+  }
 }

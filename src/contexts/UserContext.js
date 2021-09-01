@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Storage from "../components/Storage";
 
 let UserContext;
 const { Provider, Consumer } = (UserContext = React.createContext());
@@ -9,6 +10,7 @@ const BASE_URL = "https://baby-namer-api.herokuapp.com";
 const USER_URL = BASE_URL + "/users";
 const LOGIN_URL = BASE_URL + "/login";
 const PROFILE_URL = (id) => USER_URL + "/" + id;
+const LOCAL_STOR_USER = "bnUser";
 
 class UserProvider extends React.Component {
   constructor(props) {
@@ -24,6 +26,10 @@ class UserProvider extends React.Component {
       logoutUser: this.logoutUser,
       deleteUser: this.deleteUser,
     };
+  }
+
+  componentDidMount() {
+    this.getLocalStorage();
   }
 
   // Add and Delete Actions
@@ -51,15 +57,34 @@ class UserProvider extends React.Component {
       .then((res) => {
         console.log(res);
         const userReturn = res.data.user.username;
-        const userToken = res.data.user.token;
+        const userToken = res.data.token;
         this.setState({ currentUser: userReturn, token: userToken });
+        this.setStorage(userReturn, userToken);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  // Storage Call Functions
+  setStorage = (user, token) => {
+    Storage.Set(LOCAL_STOR_USER, { currentUser: user, token: token });
+  };
+
+  getLocalStorage = () => {
+    let localUser = Storage.Get(LOCAL_STOR_USER);
+    if (localUser) {
+      this.setState({
+        ...this.state,
+        currentUser: localUser.currentUser,
+        token: localUser.token,
+      });
+    }
+  };
+
   logoutUser = () => {
     this.setState({ currentUser: "", token: "" });
+    Storage.Clear(LOCAL_STOR_USER);
   };
 
   // User Deletion
