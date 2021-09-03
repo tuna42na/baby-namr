@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
+import { CSSTransition } from "react-transition-group";
 import InputRange from "react-input-range";
 import Button from "../styled/Button";
 import { NameListContext } from "../contexts/NameListContext";
 import "react-input-range/lib/css/index.css";
 
 const Form = () => {
-  const { callList, filterDisplay, toggleDisplay } = useContext(
-    NameListContext
-  );
+  const { callList, filterDisplay, toggleDisplay } =
+    useContext(NameListContext);
 
   const [gender, setGender] = useState("M");
   const [rangeToggle, setRangeToggle] = useState(true);
