@@ -24,7 +24,8 @@ class NameListProvider extends React.Component {
       namesPerPage: 25,
       page: 1,
       nameHistory: null,
-      filterDisplay: "visible",
+      filterDisplay: true,
+
       // Functional Export
       onChangeOrder: this.onChangeOrder,
       onChangeNumber: this.onChangeNumber,
@@ -40,8 +41,8 @@ class NameListProvider extends React.Component {
 
   // Toggle the filter form modal
   toggleDisplay = () => {
-    const filterDisplay =
-      this.state.filterDisplay !== "none" ? "none" : "inherit";
+    const filterDisplay = this.state.filterDisplay !== true ? true : false;
+
     this.setState({ filterDisplay });
   };
 

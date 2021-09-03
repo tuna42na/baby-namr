@@ -56,48 +56,58 @@ const Form = () => {
 
   return (
     <>
-      <div style={{ display: filterDisplay }} className="form-page">
-        <div className="modal-container">
-          <div className="modal">
-            <div className="close-window" onClick={() => toggleDisplay()}>
-              x
-            </div>
-            <h2>Name Search</h2>
-            <br />
-            <label htmlFor="gender">Baby's Gender: </label>
-            <select
-              id="gender"
-              name="gender"
-              onChange={(e) => setGender(e.target.value)}
-            >
-              <option value="M">Male</option>
-              <option value="F">Female</option>
-            </select>
-            <br />
+      <div className="form-page">
+        <CSSTransition
+          in={filterDisplay}
+          timeout={500}
+          unmountOnExit
+          classNames="form-modal"
+        >
+          <div className="modal-container">
+            <div className="modal">
+              <a className="close-window" onClick={() => toggleDisplay()}>
+                <p> x </p>
+              </a>
+              <h2>Name Search</h2>
+              <br />
+              <label htmlFor="gender">Baby's Gender: </label>
+              <select
+                id="gender"
+                name="gender"
+                onChange={(e) => setGender(e.target.value)}
+              >
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+              </select>
+              <br />
 
-            <div>
-              <label htmlFor={sliderId}> {yearLabel} </label>
-              <Button style={{ float: "right" }} onClick={() => toggleRange()}>
-                {buttonLabel}
-              </Button>
-            </div>
-            <div id={sliderId}>
-              <InputRange
-                draggableTrack
-                minValue={1880}
-                maxValue={2019}
-                value={yearValue}
-                onChange={(value) => {
-                  handleYearChange(value);
-                }}
-              />
-            </div>
+              <div>
+                <label htmlFor={sliderId}> {yearLabel} </label>
+                <Button
+                  style={{ float: "right" }}
+                  onClick={() => toggleRange()}
+                >
+                  {buttonLabel}
+                </Button>
+              </div>
+              <div id={sliderId}>
+                <InputRange
+                  draggableTrack
+                  minValue={1880}
+                  maxValue={2019}
+                  value={yearValue}
+                  onChange={(value) => {
+                    handleYearChange(value);
+                  }}
+                />
+              </div>
 
-            <br />
-            <span></span>
-            <Button onClick={handleSubmit}> Search </Button>
+              <br />
+              <span></span>
+              <Button onClick={handleSubmit}> Search </Button>
+            </div>
           </div>
-        </div>
+        </CSSTransition>
       </div>
     </>
   );
