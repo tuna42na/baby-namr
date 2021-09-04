@@ -26,6 +26,7 @@ module.exports = {
                   "not ie 11",
                 ],
                 useBuiltIns: "entry",
+                corejs: 2,
               },
             ],
             "@babel/preset-react",
