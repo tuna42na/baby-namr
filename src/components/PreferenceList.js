@@ -3,9 +3,8 @@ import { NameListContext } from "../contexts/NameListContext";
 import Chart, { ChartType } from "./Chart";
 
 const PreferenceList = () => {
-  const { preferences, onDelete, onAdd, draggedItem, nameHistory } = useContext(
-    NameListContext
-  );
+  const { preferences, onDelete, onAdd, draggedItem, nameHistory } =
+    useContext(NameListContext);
 
   let prefBox = document.querySelector(".preference-box");
 
@@ -43,6 +42,7 @@ const PreferenceList = () => {
       <h1> Your Picks </h1>
       <div
         className="preference-box"
+        id="preference-box"
         onDragOver={(e) => handleDragOver(e)}
         onDragLeave={(e) => handleDragLeave(e)}
         onDrop={(e) => handleDrop(e)}

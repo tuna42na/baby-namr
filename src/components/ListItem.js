@@ -2,9 +2,8 @@ import React, { useContext } from "react";
 import { NameListContext } from "../contexts/NameListContext";
 
 const ListItem = () => {
-  const { listView, onAdd, onDragged, fetchNameHistory } = useContext(
-    NameListContext
-  );
+  const { listView, onAdd, onDragged, fetchNameHistory } =
+    useContext(NameListContext);
 
   const handleDragStart = (e, item) => {
     e.target.classList.add("dragged-item");

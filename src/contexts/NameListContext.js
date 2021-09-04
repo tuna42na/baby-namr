@@ -80,6 +80,12 @@ class NameListProvider extends React.Component {
         })),
       };
       this.setState({ nameHistory });
+      let chart = document.getElementById("preference-box");
+      chart.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
     };
     updateNameHistory();
   };
